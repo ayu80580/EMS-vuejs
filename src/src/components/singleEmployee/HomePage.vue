@@ -1,7 +1,7 @@
 <template>
   <div class="mainbox">
 <div class="profilepic">
-<img src="../../utils/images/img2.jpeg" alt="" srcset="">
+<img src="../../utils/images/img1.jpeg" alt="" srcset="">
 
 </div>
 

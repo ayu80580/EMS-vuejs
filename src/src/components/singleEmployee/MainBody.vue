@@ -22,8 +22,8 @@ export default{
 *{
    padding: 0;
    margin: 0;
-
 }
+
 html, body {margin: 0; height: 100%; overflow-x: hidden}
 .mainbody{
     padding: 0px;

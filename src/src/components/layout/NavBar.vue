@@ -4,7 +4,7 @@
       <!-- <div class="header ">
             <h3 class="mx-auto">Menu IU <i class="fas fa-angle-down iconM"></i></h3>
           </div> -->
-          <a href="/Dashboard">Dashboard</a>
+          <!-- <a href="/Dashboard">Dashboard</a> -->
       <div class="body">
         <ul>
           <!-- <li ><button   @click="demoFun('emp-table')">Profile</button> </li>
@@ -14,17 +14,17 @@
               <li><button >Apply for Leave</button></li>
               <li> Forms </li>
               <li>Charts</li> -->
+              <li >
+            <router-link to="/Dashboard" >Dashboard</router-link>
+          </li>
           <li >
             <router-link to="/profile" >Profile</router-link>
           </li>
           <li >
-            <router-link to="/leave">Leave History</router-link>
+            <router-link to="/Profile/leave">Leave History</router-link>
           </li>
           <li>
-            <router-link to="/demo">Demo Table</router-link>
-          </li>
-          <li>
-            <router-link to="/salary">Salary History</router-link>
+            <router-link to="/Profile/salaryHistory">Salary History</router-link>
           </li>
         </ul>
       </div>

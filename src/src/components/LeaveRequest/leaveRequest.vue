@@ -1,4 +1,5 @@
 <template>
+    <dashboardNavigation></dashboardNavigation>
     <div class="mx-5 my-5">
     <table class="table table-light table-striped-columns">
         <thead>
@@ -22,9 +23,11 @@
 
 <script>
 import leaveCard from './leaveCard.vue';
+import dashboardNavigation from '../employeeDashboard/dashboardNavigation.vue';
 export default {
     components: {
         'leave-card': leaveCard,
+        dashboardNavigation
     },
     data() {
         return {

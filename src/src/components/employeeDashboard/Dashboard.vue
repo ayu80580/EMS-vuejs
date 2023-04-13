@@ -14,7 +14,8 @@
                 />
               </div>
               <div class="col-md-6">
-                <h3 class="profile-name">{{ data.first_name +' '+data.last_name }}</h3>
+                <h3 class="profile-name">{{ this.$store.state.EmployeeData.name}}</h3>
+                <h2>{{ this.$store.state.EmployeeData.id }}</h2>
                 <h5 class="profile-designation">Trainee Software Engineer</h5>
                 <p class="profile-description">
                   Your short bio or description goes here. You can use this
@@ -24,7 +25,7 @@
                   <li><i class="fas fa-map-marker-alt"></i>Chennai</li>
                   <li>
                     <i class="fas fa-envelope"></i>
-                    <a href="mailto:ayush@recruitcrm.io">{{ data.email }}</a>
+                    <a href="mailto:ayush@recruitcrm.io">{{ this.$store.state.EmployeeData.email }}</a>
                   </li>
                   <li>
                     <i class="fas fa-link"></i>
@@ -188,11 +189,11 @@ import dashboardNavigation from "./dashboardNavigation.vue";
 export default {
   /* eslint-disable vue/multi-word-component-names */
   name: "Dashboard",
-  computed:{
-    data(){
-      return this.$store.state.EmployeeData;
-    }
-  },
+  // computed:{
+  //   data(){
+  //     return this.$store.state.EmployeeData;
+  //   }
+  // },
   components: {
     dashboardNavigation,
   },

@@ -52,7 +52,7 @@
     
     <script scoped>
 import axios from "axios";
-import LeaveHistorRow from "./LeaveHistorRow.vue";
+import LeaveHistorRow from "./LeaveHistorRow.vue"
 export default {
   components: {
     LeaveHistorRow,
