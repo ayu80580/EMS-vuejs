@@ -35,7 +35,6 @@ export default {
         })
         .then((response) => {
           localStorage.setItem("access_token", response.data.access_token);
-        //   console.log(localStorage.getItem("access_token"));
           setAuthHeader(response.data.token);
           this.getEmployeeData();
         })
@@ -48,10 +47,7 @@ export default {
       axios
         .get("http://127.0.0.1:8000/api/get-user")
         .then((response) => {
-        //   console.log(response.data)
           this.$store.state.EmployeeData = response.data;
-          // console.log(this.EmployeeData);
-        //   console.log(response.data);
           router.push('/Dashboard');
         })
         .catch(() => {

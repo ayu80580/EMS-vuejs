@@ -1,11 +1,11 @@
 <template>
+    <dashboardNavigation></dashboardNavigation>
     <!-- Employee Details Heading -->
     <div class="mx-5">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                     <h3 class="ml-2">Employee List</h3>
-                    <a href="/Dashboard">Home</a>
                     <form class="d-flex " role="search" @submit.prevent="onSearch">
                         <input class="form-control me-2" type="search" placeholder="Search Employee name"
                             aria-label="Search" v-model="input">
@@ -51,9 +51,11 @@
 
 <script>
 import EmpCard from './Cards/EmpCard.vue';
+import dashboardNavigation from '../employeeDashboard/dashboardNavigation.vue';
 export default {
     components: {
-        'emp-card': EmpCard
+        'emp-card': EmpCard,
+        dashboardNavigation
     },
 
     data() {

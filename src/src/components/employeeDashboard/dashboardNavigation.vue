@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Dashboard</a>
+      <a class="navbar-brand" href="/Dashboard">Dashboard</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -18,13 +18,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/Dashboard">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link active" href="/EmployeeList">Employees List</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/AddEmployee">Add Employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/leaveRequest">Leave Request</a>
           </li>
           <li class="nav-item">
             <a
