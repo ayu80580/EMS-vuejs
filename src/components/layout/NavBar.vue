@@ -15,6 +15,7 @@
               <li> Forms </li>
               <li>Charts</li> -->
               <li >
+
             <router-link to="/Dashboard" >Dashboard</router-link>
           </li>
           <li >
