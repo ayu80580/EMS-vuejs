@@ -35,7 +35,6 @@ const routes = [
         path:'/Profile',
         component: MainBody
     },
-
 ];
 
 const router = createRouter({
