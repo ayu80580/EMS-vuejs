@@ -22,21 +22,6 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-
-            <a class="nav-link active" href="/EmployeeList">Employees List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/AddEmployee">Add Employee</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/leaveRequest">Leave Request</a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              href="/Profile"
-              >Profile</a>
-
             <router-link to="/EmployeeList">Employee List</router-link>
           </li>
           <li class="nav-item">
@@ -55,5 +40,11 @@
   </nav>
 
 </template>
+
+<style scoped>
+.router-link-active{
+  color: #2f89fc;
+}
+</style>
 
 

@@ -14,8 +14,7 @@
               <li><button >Apply for Leave</button></li>
               <li> Forms </li>
               <li>Charts</li> -->
-              <li >
-
+          <li >
             <router-link to="/Dashboard" >Dashboard</router-link>
           </li>
           <li >
