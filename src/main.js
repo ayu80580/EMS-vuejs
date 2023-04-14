@@ -1,6 +1,7 @@
 // import Vue from 'vue';
 import { createApp } from 'vue'
 import App from './App.vue'
+import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import router from './router';
 
@@ -11,7 +12,9 @@ const store = createStore({
         return{
         EmployeeData: [],
         LatestSalary: [],
-        Tax: []
+        Tax: [],
+        UsersData:[],
+        ActiveLeaveRequest:[],
         };
     },
     mutations: {
