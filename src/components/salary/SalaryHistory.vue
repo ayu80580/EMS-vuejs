@@ -22,7 +22,7 @@
         </tr> -->
         <tbody v-for="payment in payments" :key="payment.month" >
 
-          <salary-row :month="payment.month" :salary="payment.amount" :status="payment.status"></salary-row>
+          <salary-row :month="months[payment.month]" :salary="payment.payable_salary" :status="payment.paid_status"></salary-row>
         </tbody>
        
 
@@ -43,14 +43,19 @@ export default{
   },
     data(){
        return{
-         payments:[]
+         payments:[],
+         months : [
+    'January', 'February', 'March', 'April','May', 'June','July','August','September','October','November', 'December'
+  ]
        }
     },
     mounted(){
-      axios.get('http://127.0.0.1:8000/api/payments/get').
+      const id=this.$store.state.EmployeeData.id;
+     
+      axios.get(`http://127.0.0.1:8000/api/user/salary/${id}`).
       then((response)=>{
-        this.payments=response.data.data;
-        // console.log(this.data);
+        this.payments=response.data;
+        console.log(this.payments);
       })
     }
 }
