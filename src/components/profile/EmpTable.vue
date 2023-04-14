@@ -44,7 +44,7 @@
       </tr>
      
 
-        <tbody v-for="values in data" :key="values.emp_id">
+        <!-- <tbody v-for="values in data" :key="values.emp_id">
           
           <EmpEntries
           
@@ -57,7 +57,7 @@
           ></EmpEntries>
 
 
-</tbody>
+</tbody> -->
 
 
 
@@ -78,13 +78,14 @@ export default {
   data() {
     return {
       data: [],
+      id : this.$store.state.EmployeeData.id
     };
   },
   components:{EmpEntries},
   mounted() {
-    axios.get("http://127.0.0.1:8000/api/users/get").then((response) => {
-      this.data = response.data.data;
-      console.log(response);
+    axios.get(`http://127.0.0.1:8000/api/users/get/`).then((response) => {
+      this.data = response.data;
+      console.log(this.data);
     });
   },
 };
