@@ -62,6 +62,7 @@ export default {
       leaves: [],
       itemsPerPage: 5,
       currentPage: 1,
+      id:this.$store.state.EmployeeData.id
     };
   },
   computed: {

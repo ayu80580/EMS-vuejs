@@ -25,14 +25,15 @@
             <router-link to="/EmployeeList">Employee List</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/AddEmployee">Add Employee</router-link>
+            <router-link to="/AddEmployee">
+              Add Employee
+            </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/leaveRequest">Leave Request</router-link>
           </li>
           <li class="nav-item">
               <router-link to="/Profile">Profile</router-link>
-
           </li>
         </ul>
       </div>

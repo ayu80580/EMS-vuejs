@@ -5,7 +5,7 @@
             <div class="row">
               <div class="col-md-4">
                 <img
-                  src="@/assets/logo.png"
+                  :src="this.$store.state.EmployeeData.image_path"
                   alt="Ayush Gupta"
                   class="profile-image rounded-circle img-fluid"
                 />

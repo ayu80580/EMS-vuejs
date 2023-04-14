@@ -1,11 +1,8 @@
 <template>
     <tr>
         <th scope="row">{{ id }}</th>
-        <!-- <td>
-                <img src="" alt="">
-            </td> -->
         <td>
-            <a class="text-decoration-none" @click.prevent="" href="">{{ name }}</a>
+            <router-link to="/profile/profile/5">{{ name }}</router-link>
         </td>
         <td>
             {{ phone }}
@@ -34,12 +31,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+import router from '../../../router';
 export default {
 
     props: ['id', 'name', 'phone', 'email', 'role', 'status', 'jod',],
     data() {
         return {
             selected: this.status
+        }
+    },
+    methods: {
+        goToUserProfile() {
+            router.push('/profile/profile');
+        },
+        saveStatus() {
+
+            axios
+                .put("http://127.0.0.1:8000/api/users/update", {
+                    'id': this.id,
+                    'user_status_id': this.selected == 1 ? 2 : 1,
+                })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch(() => {
+                    return "Error";
+                });
         }
     }
 
