@@ -19,42 +19,60 @@
                     <div class="form-group">
                         <select class="form-select mb-3" 
                         aria-label=".form-select-lg example" 
-                        v-model="selected" 
-                        :disabled="!enable"
+                        v-model="selected"
+                        :disabled="disableButton"
                         >
-                            <option value="pending">Pending</option>
-                            <option value="approve">Approve</option>
-                            <option value="reject">Reject</option>
+                            <option value="2">Pending</option>
+                            <option value="1">Approve</option>
+                            <option value="0">Reject</option>
                         </select>
                     </div>
                 </div>
             </div>
         </td>
         <td>
-            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus" :disabled="!enable">Save</button>
+            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus" :disabled="disableButton">Save</button>
             
         </td>
     </tr>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-    props: ['id', 'name', 'startDate', 'endDate', 'role'],
+    props: ['id', 'name', 'startDate', 'endDate','status', 'role'],
     data() {
         return {
-            selected:'pending',
-            enable:true,
+            selected:this.status,
+            disableButton:false
         }
     },
     methods :{
         saveStatus() {
-            if(this.selected==='pending') {
+            
+            if(this.selected===2) {
                 alert('Please select any other option!');
                 return;
             }
+            // console.log({
+            //     'id':this.id,
+            //     approval_status:this.selected,
+            //     approved_by_id:this.$store.state.EmployeeData.id
+            // });
+            axios 
+            .put('http://127.0.0.1:8000/api/activeleaves/update',{
+                'id':this.id,
+                approval_status:this.selected,
+                approved_by_id:this.$store.state.EmployeeData.id
+            }).then((response)=>{
+                console.log(response);
+                this.disableButton=true;
+            }).catch(()=>{
+                return "Error";
+            })
             this.enable = !this.enable;
             console.log(this.selected);
-        }
+        },
     }
 }
 </script>

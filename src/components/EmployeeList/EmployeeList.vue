@@ -28,7 +28,7 @@
         <table class="table table-info table-striped-columns">
             <thead>
                 <tr>
-                    <th  scope="col">#</th>
+                    <th scope="col">#</th>
                     <!-- <th scope="col">Image</th> -->
                     <th scope="col">Name</th>
                     <th scope="col">phone</th>
@@ -44,7 +44,7 @@
                 <emp-card :id=Employee.id :name=Employee.name :phone=Employee.phone :email=Employee.email
                     :role="Employee.user_role.role_name" :status="Employee.user_status.status" :jod=Employee.joining_date>
                 </emp-card>
-                
+
             </tbody>
         </table>
     </div>
@@ -73,13 +73,13 @@ export default {
     },
     beforeMount() {
         axios
-        .get("http://127.0.0.1:8000/api/users", )
-        .then((response) => {
-          this.$store.state.UsersData = response.data;
-        })
-        .catch(() => {
-          console.error()
-        });
+            .get("http://127.0.0.1:8000/api/users",)
+            .then((response) => {
+                this.$store.state.UsersData = response.data;
+            })
+            .catch(() => {
+                console.error()
+            });
     },
     computed: {
         Employees() {

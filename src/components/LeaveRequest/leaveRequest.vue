@@ -15,7 +15,7 @@
         </thead>
         <tbody v-for="request in requests" :key="request.id">
             <leave-card :id="request.id" :name="request.user.name" :startDate="request.leave_start_date" :endDate="request.leave_end_date"
-                :role="request.user.user_role.role_name"></leave-card>
+             :status="request.approval_status"   :role="request.user.user_role.role_name"></leave-card>
         </tbody>
         <!-- {{ requests }} -->
     </table>
@@ -43,7 +43,7 @@ export default {
     },
     beforeMount() {
         axios
-        .get("http://127.0.0.1:8000/api/activeLeaves", )
+        .get("http://127.0.0.1:8000/api/activeleaves", )
         .then((response) => {
           this.$store.state.ActiveLeaveRequest = response.data;
         })
