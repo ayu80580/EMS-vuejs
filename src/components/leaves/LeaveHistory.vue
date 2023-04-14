@@ -80,8 +80,8 @@ export default {
     },
   },
   mounted() {
-    // const id=this.$store.state.EmployeeData.id;
-    axios.get(`http://127.0.0.1:8000/api/user/leaves/4`).then((response) => {
+    const id=this.$store.state.EmployeeData.id;
+    axios.get(`http://127.0.0.1:8000/api/user/leaves/${id}`).then((response) => {
       this.leaves = response.data;
       console.log(this.leaves);
     });
