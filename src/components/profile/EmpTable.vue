@@ -32,32 +32,32 @@
 
   <div class="m-5 description">
     <table class="table align-middle mb-0 bg-white">
-      <tr>
+      <thead>
         <th colspan="5" class="h3 bg-light desc">Description</th>
-      </tr>
-      <tr>
+      </thead>
+      <!-- <tr>
         <th class="bg-light">Employee Id</th>
         <th class="bg-light">Name</th>
         <th class="bg-light">Role</th>
         <th class="bg-light">Email</th>
         <th class="bg-light">Address</th>
-      </tr>
+      </tr> -->
      
 
-        <!-- <tbody v-for="values in data" :key="values.emp_id">
+        <tbody  >
           
           <EmpEntries
           
-          :key="emp_id"
-          :name="values.name"
-          :emp_id="values.emp_id"
-          :role="values.role"
-          :email="values.email"
-          :address="values.address" 
+          :key="data.id"
+          :name="data.name"
+          :emp_id="data.id"
+          :role="role"
+          :email="data.email"
+          :status="status" 
           ></EmpEntries>
 
 
-</tbody> -->
+</tbody>
 
 
 
@@ -78,14 +78,20 @@ export default {
   data() {
     return {
       data: [],
-      id : this.$store.state.EmployeeData.id
+      role:'',
+      status:''
+      
     };
   },
+ 
   components:{EmpEntries},
+  
   mounted() {
-    axios.get(`http://127.0.0.1:8000/api/users/get/`).then((response) => {
+    const id=this.$store.state.EmployeeData.id;
+    axios.get(`http://127.0.0.1:8000/api/user/profile/${id}`).then((response) => {
       this.data = response.data;
-      console.log(this.data);
+      this.role=response.data.user_role.role_name;
+      this.status=response.data.user_status.status;
     });
   },
 };
