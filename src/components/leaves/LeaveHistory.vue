@@ -9,17 +9,17 @@
         <th class="bg-light">Applied on</th>
         <th class="bg-light">Start Date</th>
         <th class="bg-light">End Date</th>
-        <th class="bg-light">Leave Count</th>
+        <th class="bg-light">Approval sent to</th>
         <th class="bg-light">Approval Status</th>
       </tr>
 
       <tbody v-for="leave of paginatedLeaves" :key="leave.leave_id">
         <LeaveHistorRow
-          :id="leave.leave_id"
-          :applied_on="leave.applied_on"
-          :start_date="leave.start_date"
-          :end_date="leave.end_date"
-          :leave_count="leave.leave_count"
+          :id="leave.id"
+          :applied_on="leave.created_at"
+          :start_date="leave.leave_start_date"
+          :end_date="leave.leave_end_date"
+          :approved_by="leave.approved_by"
           :approval_status="leave.approval_status"
         ></LeaveHistorRow>
       </tbody>
@@ -53,6 +53,7 @@
     <script scoped>
 import axios from "axios";
 import LeaveHistorRow from "./LeaveHistorRow.vue"
+
 export default {
   components: {
     LeaveHistorRow,
@@ -79,9 +80,10 @@ export default {
     },
   },
   mounted() {
-    axios.get("http://127.0.0.1:8000/api/leaves/get").then((response) => {
-      this.leaves = response.data.data;
-      console.log(this.leaves[0].leave_id);
+    const id=this.$store.state.EmployeeData.id;
+    axios.get(`http://127.0.0.1:8000/api/user/leaves/${id}`).then((response) => {
+      this.leaves = response.data;
+      console.log(this.leaves);
     });
   },
 };

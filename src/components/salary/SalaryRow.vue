@@ -4,7 +4,7 @@
         <tr >
             <td>{{month }}</td>
             <td>{{ salary }}</td>
-            <td>{{status}}</td>
+            <td>{{status==1?'Paid':'Pending'}}</td>
         </tr>
 </template>
 
