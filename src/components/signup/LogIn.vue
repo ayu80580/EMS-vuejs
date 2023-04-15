@@ -1,13 +1,13 @@
 <template>
     <h1>Login</h1>
-    <form @submit.prevent>
+    <form @submit.prevent="login">
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" v-model="email" required>
         
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" v-model="password" required>
         
-        <button @click="getUserPost">Login</button>
+        <button type="submit">Login</button>
     </form>
 </template>
 
@@ -27,7 +27,7 @@ export default {
 
   methods: {
   
-    getUserPost() {
+    login() {
       axios
         .post("http://127.0.0.1:8000/api/login", {
           email: this.email,
@@ -37,11 +37,13 @@ export default {
           localStorage.setItem("access_token", response.data.access_token);
           setAuthHeader(response.data.token);
           this.getEmployeeData();
+          
         })
         .catch(() => {
           return "Error";
         });
     },
+
     getEmployeeData() {
      
       axios
@@ -55,6 +57,7 @@ export default {
         });
     },
   },
+  
 };
 </script>
 
