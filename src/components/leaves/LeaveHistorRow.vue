@@ -15,13 +15,13 @@ export default{
     computed:{
         status(){
             if(this.approval_status==0){
-                return 'Pending';
+                return 'Rejected';
             }
             else if(this.approval_status==1){
                 return 'Approved';
             }
             else{
-                return 'Rejected';
+                return 'Pending';
             }
         }
     }
