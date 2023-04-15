@@ -6,6 +6,9 @@
 
       <router-link to="/Dashboard">Dashboard</router-link>
 
+
+
+
       <button
         class="navbar-toggler"
         type="button"
@@ -48,4 +51,23 @@
 }
 </style>
 
-
+<script>
+import axios from 'axios';
+export default{
+  methods: {
+  logout() {
+    axios.post('http://127.0.0.1:8000/api/logout')
+      .then(response => {
+        // handle success
+        console.log(response.data);
+        // redirect to login page
+        window.location.href = '/login';
+      })
+      .catch(error => {
+        // handle error
+        console.log(error.response.data);
+      });
+  },
+}
+}
+</script>
