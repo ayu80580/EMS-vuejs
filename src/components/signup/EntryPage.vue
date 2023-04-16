@@ -1,156 +1,121 @@
 <template>
-   
-<head>
-	<title>Login Page</title>
-</head>
-<body>
-	<div class="container">
-		<div class="picture"></div>
-        <div class="insidebox">
+
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              class="img-fluid" alt="Sample image">
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
            
-
-            <div class="form-container">
-               <logIn></logIn>
-            </div>
-		</div>
-	</div>
-</body>
-
-
-</template>
-
-
-<script>
-import LogIn from './LogIn.vue';
-
-export default{
-components:{
-    LogIn,
-  
-},
-
-
-}
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style scoped>
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #f7f7f7;
-        font-family: Arial, sans-serif;
-    }
-
-    .buttons{
-        display: flex;
-        margin: 30px;
-    }
-
-    .container {
-        max-width: inherit;
-background-color: #f8ceec;
-background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
-        display: flex;
-        flex-direction: row;
-        height: 100vh;
-        align-items: center;
-        padding: 0;
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .form-container {
-        display: flex;
-        flex-direction: column;
-        background-color: #fff;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        border-radius: 5px;
-        width: 400px;
-    }
-
-    h1 {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-
-    label {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-
-    input[type="text"], input[type="password"] {
-        padding: 10px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        border: none;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        font-size: 16px;
-        font-family: Arial, sans-serif;
-    }
-
-    input[type="submit"] {
-        background-color: #008CBA;
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #006080;
-    }
-    .insidebox{
-        width: 100%;
-justify-content: center;
-align-items: center;
-display: flex;
-flex-direction: column;
-    }
-
-    .picture {
-        background-image: url('https://www.w3schools.com/howto/img_parallax.jpg');
-        background-size: cover;
-        background-position: center;
-        height: 100%;
-        width: 80%;
-    }
+           
+           
+           
+           
+            <form @submit.prevent="login">
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">Email address</label>
+                <input type="email" id="form3Example3" class="form-control form-control-lg"
+                  placeholder="Enter a valid email address"  v-model="email" required/>
+               
+              </div>
+              <!-- Password input -->
+              <div class="form-outline mb-3">
+                <label class="form-label" for="form3Example4">Password</label>
+                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  placeholder="Enter password" v-model="password" required/>
+              
+              </div>
     
-
-    @media(max-width: 768px) {
-        .container {
-            flex-direction: column;
-            max-width: inherit;
-        }
-
-        .picture {
-            width: 100%;
-            height: 400px;
-        }
-
-        .form-container {
-            width: 100%;
-        }
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button type="submit" class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                
+              </div>
+            </form>
+    
+    
+    
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+      </div>
+    </section>
+    
+    
+    </template>
+    
+    
+    <script>
+    import setAuthHeader from '../AuthAPI/setAuthHeader'
+    import axios from "axios";
+    import router from '../../router';
+    export default {
+    
+      data() {
+        return {
+          email : "",
+          password: "",
+        };
+      },
+    
+      methods: {
+      
+        login() {
+          axios
+            .post("http://127.0.0.1:8000/api/login", {
+              email: this.email,
+              password: this.password,
+            })
+            .then((response) => {
+              localStorage.setItem("access_token", response.data.access_token);
+              setAuthHeader(response.data.token);
+              this.getEmployeeData();
+              
+            })
+            .catch(() => {
+              return "Error";
+            });
+        },
+    
+        getEmployeeData() {
+         
+          axios
+            .get("http://127.0.0.1:8000/api/get-user")
+            .then((response) => {
+              this.$store.state.EmployeeData = response.data;
+              router.push('/Dashboard');
+            })
+            .catch(() => {
+             router.push('/error')
+            });
+        },
+      },
+      
+    };
+    </script>
+    
+    
+    
+    
+    <style scoped>
+    .divider:after,
+    .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
     }
-</style>
+    .h-custom {
+    height: calc(100% - 73px);
+    }
+    @media (max-width: 450px) {
+    .h-custom {
+    height: 100%;
+    }
+    }
+    </style>
