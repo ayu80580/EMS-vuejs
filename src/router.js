@@ -1,6 +1,6 @@
 import { createWebHistory,createRouter } from "vue-router";
 
-
+import store from './main'
 // import testApi from './components/testApi.vue'
 import EntryPage from './components/signup/EntryPage.vue'
 import EmployeeList from './components/EmployeeList/EmployeeList.vue'
@@ -80,6 +80,17 @@ const router = createRouter({
     history:createWebHistory(),
     routes
 });
+
+router.beforeEach((to) => {
+  const auth=store.state.auth;
+  console.log(auth);
+  if (to.path !== "/"  && auth==0) {
+    router.push('/');
+  }
+});
+
+
+
 
 
 export default router;
