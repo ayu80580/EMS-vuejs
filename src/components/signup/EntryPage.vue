@@ -88,6 +88,7 @@
             .get("http://127.0.0.1:8000/api/get-user")
             .then((response) => {
               this.$store.state.EmployeeData = response.data;
+              this.$store.state.auth=1;
               router.push('/Dashboard');
             })
             .catch(() => {

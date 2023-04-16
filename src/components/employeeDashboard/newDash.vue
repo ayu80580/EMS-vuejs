@@ -141,14 +141,11 @@
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
         <path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
 
-        <div class="count">{{ this.$store.state.EmployeeData.name }}</div>
+        <!-- <div class="count">{{ this.$store.state.EmployeeData.name }}</div> -->
 
         <div class="count">Hi</div>
   <ul class="dropdown-menu">
-    <li><a href="#">Profile</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">Logout</a></li>
+    <li><a href="/" @click="getLeave">Logout</a></li>
   </ul>
 </div>
 </div>
@@ -210,8 +207,10 @@ import userPayroll from "./userPayroll.vue";
 import userLeave from "./userLeave.vue";
 import leaveRequest from "./leaveRequest.vue";
 // import dashboardNavigation from "./dashboardNavigation.vue";
+import { mapMutations } from 'vuex';
 
 export default {
+  
   /* eslint-disable vue/multi-word-component-names */
   name: "NewDashboard",
   // computed:{
@@ -219,20 +218,38 @@ export default {
   //     return this.$store.state.LatestSalary;
   //   }
   // },
+  
+
   components: {
     // dashboardNavigation,
     // userDetail,
     userPayroll,
     userLeave,
     leaveRequest,
+
   },
   computed:{
     url(){
       return '/user/'+this.$store.state.EmployeeData.id+'/profile';
     }
   },
+  
+methods: {
+  ...mapMutations(['updateAuth']),
+  getLeave() {
+    const auth=0;
+    this.updateAuth(auth);
+  },
+},
+
 };
+
+
+
+
+
 </script>
+
 
 
 

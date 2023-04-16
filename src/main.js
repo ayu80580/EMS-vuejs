@@ -10,7 +10,7 @@ import { createStore } from 'vuex';
 const store = createStore({
 
   plugins: [createPersistedState({
-    paths: ['EmployeeData' , 'LatestSalary' , 'Tax' , 'Leave', 'data','leaves','payment'],
+    paths: ['EmployeeData' , 'LatestSalary' , 'Tax' , 'Leave', 'data','leaves','payment','auth'],
   })],
   
     state(){
@@ -26,11 +26,12 @@ const store = createStore({
         data: [],
         role:'',
         status:'',
+        auth:0
       
         };
     },
     mutations: {
- 
+      
         updateLatestSalary(state, payload) {
           state.LatestSalary = payload;
         },
@@ -48,12 +49,15 @@ const store = createStore({
         },
         updatePayment(state,payload){
           state.payment=payload;
+        },
+        updateAuth(state,payload){
+          state.auth=payload;
         }
       },
 });
-
 const app = createApp(App);
 app.use(store);
 app.use(router);
 app.mount('#app');
+export default store
 
