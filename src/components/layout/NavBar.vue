@@ -100,7 +100,7 @@ a{
 }
 
 h3 {
-  color: #ffffff;
+  color: black;
   font-family: "Roboto", sans-serif;
   margin-left: 1rem;
 }
