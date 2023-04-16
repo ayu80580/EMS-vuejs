@@ -8,10 +8,17 @@
                     <h3 class="ml-2">Employee List</h3>
 
                     <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
-                        <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filterByStatus">
+                        <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filter_by_status">
                             <option value="all">All</option>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="2">Active</option>
+                            <option value="1">Inactive</option>
+                        </select>
+                    </form>
+                    <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
+                        <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filter_by_role">
+                            <option value="all">All</option>
+                            <option value="2">Manager</option>
+                            <option value="3">Employee</option>
                         </select>
                     </form>
                     <form class="d-flex " role="search" @submit.prevent="onSearch">
@@ -41,7 +48,8 @@
             </thead>
             <tbody v-for="Employee in Employees" :key="Employee.id">
                 <emp-card :id=Employee.id :name=Employee.name :phone=Employee.phone :email=Employee.email
-                    :role="Employee.user_role.role_name" :status="Employee.user_status.status" :jod=Employee.joining_date>
+                    :role="Employee.user_role.role_name" :status="Employee.user_status.status" :jod=Employee.joining_date
+                    @statusChanged="statusChanged">
                 </emp-card>
             </tbody>
         </table>
@@ -61,77 +69,51 @@ export default {
     data() {
         return {
             input:'',
-            filterByStatus: 'all',
+            filter_by_status: 'all',
+            filter_by_role:'all',
             // filterByRole:'all'
         };
     },
-
     methods: {
-        // onSearch() {
-        //     axios
-        //     .post('http://127.0.0.1:8000/api/users/search', {
-        //         input:this.input,
-                
-        //     })
-        //     .then((response)=>{
-        //         console.log(response);
-        //         this.$store.state.UsersData = response.data;
-        //     })
-        //     .catch(()=>{
-
-        //     });
-            
-        // }
+        filter() {
+            axios
+                .post('http://127.0.0.1:8000/api/users/filter', {
+                    filter_by_status: this.filter_by_status,
+                    filter_by_role:this.filter_by_role,
+                    input:this.input,
+                    // filterByRole:this.filterByRole,
+                })
+                .then((response) => {
+                    console.log(response);
+                    this.$store.state.UsersData = response.data;
+                    
+                })
+                .catch(() => {
+                    console.error();
+                });
+        },
+        statusChanged() {
+            this.filter();
+        }
     },
     beforeMount() {
-        axios
-            .get("http://127.0.0.1:8000/api/users",)
-            .then((response) => {
-                console.log(response);
-                this.$store.state.UsersData = response.data;
-            })
-            .catch(() => {
-                console.error()
-            });
+        this.filter();
     },
-    // beforeUpdate() {
-
-    // },
     computed: {
         Employees() {
             return this.$store.state.UsersData;
         }
     },
     watch: {
-        filterByStatus(newValue) {
-            axios
-                .post('http://127.0.0.1:8000/api/users/filterbystatus', {
-                    filterBy: newValue,
-                    // filterByRole:this.filterByRole,
-                })
-                .then((response) => {
-                    console.log(response);
-                    this.$store.state.UsersData = response.data;
-                })
-                .catch(() => {
-                    console.error();
-                });
-
+        filter_by_status() {
+            this.filter();
         },
-        input(newValue) {
-            axios
-            .post('http://127.0.0.1:8000/api/users/search', {
-                input:newValue,
-                
-            })
-            .then((response)=>{
-                console.log(response);
-                this.$store.state.UsersData = response.data;
-            })
-            .catch(()=>{
-
-            });
-            
+        filter_by_role() {
+            console.log(this.filter_by_role);
+            this.filter();
+        },
+        input() {
+            this.filter();
         }
 
     }
@@ -139,4 +121,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>

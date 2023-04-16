@@ -19,7 +19,7 @@ const store = createStore({
         LatestSalary: [],
         Tax: [],
         UsersData:[],
-        ActiveLeaveRequest:[],
+        LeaveRequest:[],
         Leave :[],
         leaves:[],
         payment:[],
