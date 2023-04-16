@@ -6,18 +6,18 @@
             <div class="container-fluid">
                 <div class="navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                     <h3 class="ml-2">Employee List</h3>
+
+                    <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
+                        <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filterByStatus">
+                            <option value="all">All</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </form>
                     <form class="d-flex " role="search" @submit.prevent="onSearch">
                         <input class="form-control me-2" type="search" placeholder="Search Employee name"
                             aria-label="Search" v-model="input">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
-                    <!-- <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <form action="" @submit.prevent="">
-                                <button class="btn btn-outline-success" type="submit">Add Employee</button>
-                            </form>
-                        </li>
-                    </ul> -->
                 </div>
             </div>
         </nav>
@@ -25,7 +25,7 @@
 
     <!-- Employee Details -->
     <div class="mx-5 my-5">
-        <table class="table table-info table-striped-columns">
+        <table class="table table-light table-striped-columns">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -40,11 +40,9 @@
                 </tr>
             </thead>
             <tbody v-for="Employee in Employees" :key="Employee.id">
-
                 <emp-card :id=Employee.id :name=Employee.name :phone=Employee.phone :email=Employee.email
                     :role="Employee.user_role.role_name" :status="Employee.user_status.status" :jod=Employee.joining_date>
                 </emp-card>
-
             </tbody>
         </table>
     </div>
@@ -62,29 +60,80 @@ export default {
 
     data() {
         return {
-            // Employees: this.$store.state.UsersData,
+            input:'',
+            filterByStatus: 'all',
+            // filterByRole:'all'
         };
     },
 
     methods: {
-        onSearch() {
-            this.input = ''
-        }
+        // onSearch() {
+        //     axios
+        //     .post('http://127.0.0.1:8000/api/users/search', {
+        //         input:this.input,
+                
+        //     })
+        //     .then((response)=>{
+        //         console.log(response);
+        //         this.$store.state.UsersData = response.data;
+        //     })
+        //     .catch(()=>{
+
+        //     });
+            
+        // }
     },
     beforeMount() {
         axios
             .get("http://127.0.0.1:8000/api/users",)
             .then((response) => {
+                console.log(response);
                 this.$store.state.UsersData = response.data;
             })
             .catch(() => {
                 console.error()
             });
     },
+    // beforeUpdate() {
+
+    // },
     computed: {
         Employees() {
             return this.$store.state.UsersData;
         }
+    },
+    watch: {
+        filterByStatus(newValue) {
+            axios
+                .post('http://127.0.0.1:8000/api/users/filterbystatus', {
+                    filterBy: newValue,
+                    // filterByRole:this.filterByRole,
+                })
+                .then((response) => {
+                    console.log(response);
+                    this.$store.state.UsersData = response.data;
+                })
+                .catch(() => {
+                    console.error();
+                });
+
+        },
+        input(newValue) {
+            axios
+            .post('http://127.0.0.1:8000/api/users/search', {
+                input:newValue,
+                
+            })
+            .then((response)=>{
+                console.log(response);
+                this.$store.state.UsersData = response.data;
+            })
+            .catch(()=>{
+
+            });
+            
+        }
+
     }
 
 }
