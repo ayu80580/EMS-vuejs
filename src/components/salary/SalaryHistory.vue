@@ -22,7 +22,7 @@
         </tr> -->
         <tbody v-for="payment in payments" :key="payment.month" >
 
-          <salary-row :month="months[payment.month]" :salary="payment.payable_salary" :status="payment.paid_status"></salary-row>
+          <salary-row :month="months[payment.month-1]" :salary="payment.payable_salary" :status="payment.paid_status"></salary-row>
         </tbody>
        
 
