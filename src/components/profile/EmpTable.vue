@@ -73,27 +73,39 @@
 <script>
 import axios from "axios";
 import EmpEntries from "./EmpEntries.vue";
-
+import { mapMutations } from 'vuex';
 export default {
-  data() {
-    return {
-      data: [],
-      role:'',
-      status:''
-      
-    };
+  
+  
+  computed:{
+    data(){
+      return this.$store.state.data;
+    },
+    role(){
+      return this.$store.state.role;
+    }
   },
  
   components:{EmpEntries},
   
-  mounted() {
-    const id=this.$store.state.EmployeeData.id;
+
+
+  methods: {
+    ...mapMutations(['updateEmpTable']),
+    getEmpTable() {
+      const id=this.$store.state.EmployeeData.id;
     axios.get(`http://127.0.0.1:8000/api/user/profile/${id}`).then((response) => {
-      this.data = response.data;
-      this.role=response.data.user_role.role_name;
-      this.status=response.data.user_status.status;
+      this.$store.state.data = response.data;
+      this.$store.state.role=response.data.user_role.role_name;
+      this.$store.state.status=response.data.user_status.status;
     });
+    },
   },
+  
+  mounted() {
+    this.getEmpTable();
+  },
+
 };
 </script>
 

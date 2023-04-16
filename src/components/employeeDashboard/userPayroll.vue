@@ -1,6 +1,6 @@
 <template>
     <div class="col-md-6">
-            <div class="card">
+            <div class="card" style="height: 207px;">
               <div class="card-body">
                 <h5 class="card-title">Payroll Management</h5>
                 <div class="row">
@@ -24,7 +24,7 @@
                     <div class="card bg-light mb-3">
                       <div class="card-body">
                         <h6 class="card-title">Deductions</h6>
-                        <p class="card-text">$500</p>
+                        <p class="card-text">{{ this.$store.state.Tax.deductions }}</p>
                       </div>
                     </div>
                   </div>
@@ -80,3 +80,18 @@ data(){
 };
 </script>
 
+<style scoped>
+.card-body {
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+    max-height: 125px;
+    height: 125px;
+}
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    margin-top: 7px;
+ 
+    font-weight: 500;
+    line-height: 1.2;
+}
+</style>
