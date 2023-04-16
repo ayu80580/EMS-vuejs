@@ -225,7 +225,7 @@ export default {
   },
   computed:{
     url(){
-      return '/user/profile/'+this.$store.state.EmployeeData.id;
+      return '/user/'+this.$store.state.EmployeeData.id+'/profile';
     }
   },
 };

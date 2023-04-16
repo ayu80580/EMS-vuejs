@@ -88,10 +88,11 @@ export default {
   methods: {
     ...mapMutations(['updateLeaves']),
     getLeave() {
-      const id=this.$store.state.EmployeeData.id;
+      const id=this.$store.state.data.id;
+      // const id=this.$route.params.id;
     axios.get(`http://127.0.0.1:8000/api/user/leaves/${id}`).then((response) => {
       this.$store.state.leaves = response.data;
-      console.log(this.$store.state.leaves);
+      // console.log(this.$store.state.leaves);
     });
     },
   },

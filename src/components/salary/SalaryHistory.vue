@@ -61,8 +61,8 @@ export default{
     methods: {
     ...mapMutations(['updateSalary']),
     getSalary() {
-      const id=this.$store.state.EmployeeData.id;
-     
+      // const id=this.$store.state.EmployeeData.id;
+      const id=this.$route.params.id;
      axios.get(`http://127.0.0.1:8000/api/user/salary/${id}`).
      then((response)=>{
       this.$store.state.payment=response.data;

@@ -53,13 +53,13 @@ const routes = [
    
     {
         name:'Profile',
-        path: '/User',
+        path: '/User/:id',
         component: MainBody,
+        props:{params:true},
         
         children: [
           {
-            path: 'profile/:id',
-            props:{params:true},
+            path: 'profile',
             component: EmpTable,
             
           },
@@ -80,5 +80,6 @@ const router = createRouter({
     history:createWebHistory(),
     routes
 });
+
 
 export default router;
