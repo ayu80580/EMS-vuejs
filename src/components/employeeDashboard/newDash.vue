@@ -142,10 +142,7 @@
         <path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
         <div class="count">{{ this.$store.state.EmployeeData.name }}</div>
   <ul class="dropdown-menu">
-    <li><a href="#">Profile</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">Logout</a></li>
+    <li><a @click="logout">Logout</a></li>
   </ul>
 </div>
 </div>
@@ -156,7 +153,7 @@
 
 <!-- Right Nav -->
     <div class="header" style="
-    padding: 21px;" >User Details</div>
+    padding: 21px;">User Details</div>
     <div class="right-content">
       <div class="task-box yellow">
         <div class="description-task">
@@ -206,6 +203,7 @@
 import userPayroll from "./userPayroll.vue";
 import userLeave from "./userLeave.vue";
 import leaveRequest from "./leaveRequest.vue";
+import router from '../../router';
 // import dashboardNavigation from "./dashboardNavigation.vue";
 
 export default {
@@ -228,6 +226,14 @@ export default {
       return '/user/'+this.$store.state.EmployeeData.id+'/profile';
     }
   },
+
+  methods:{
+  logout() {
+     localStorage.removeItem('vuex');
+     localStorage.removeItem('access_token');
+     router.push('/');
+      }
+  }
 };
 </script>
 
