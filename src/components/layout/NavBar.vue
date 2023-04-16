@@ -89,7 +89,7 @@ a{
   margin-top: 10px;
   width: 300px;
   height: 90vh;
-  background-color: #1e2b32;
+  background-color: rgb(47, 105, 181);
   border-radius: 10px 10px;
 }
 
