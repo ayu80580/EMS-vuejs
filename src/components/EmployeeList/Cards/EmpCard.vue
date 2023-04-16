@@ -46,7 +46,7 @@ export default {
             router.push('/profile/profile');
         },
         saveStatus() {
-
+            
             axios
                 .put("http://127.0.0.1:8000/api/users/update", {
                     'id': this.id,
@@ -54,6 +54,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response);
+                    this.$emit('statusChanged');
                 })
                 .catch(() => {
                     return "Error";

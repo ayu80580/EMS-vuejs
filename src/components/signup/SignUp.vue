@@ -20,7 +20,7 @@
 </template>
     
 
-<script scoped>
+<script>
 import axios from 'axios';
 export default {
   data() {
@@ -59,7 +59,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 body {
   margin: 0;
   padding: 0;

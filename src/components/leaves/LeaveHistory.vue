@@ -52,7 +52,7 @@
   </div>
 </template>
     
-    <script scoped>
+    <script>
 import axios from "axios";
 import LeaveHistorRow from "./LeaveHistorRow.vue"
 
@@ -104,7 +104,7 @@ export default {
 };
 </script>
     
-    <style>
+<style scoped>
 .nodisplay {
   color: blue;
 }

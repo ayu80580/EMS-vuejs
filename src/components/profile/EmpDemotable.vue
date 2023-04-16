@@ -87,7 +87,7 @@
   };
   </script>
   
-  <style>
+  <style scoped>
 .desc {
   font-family: "Dancing Script", cursive;
   font-size: 20px;
