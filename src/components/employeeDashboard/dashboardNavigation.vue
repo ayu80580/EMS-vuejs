@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
 
-      <router-link to="/Dashboard">Dashboard</router-link>
+      <router-link class="nav-link" to="/Dashboard">Dashboard</router-link>
 
 
 
@@ -25,18 +25,18 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="/EmployeeList">Employee List</router-link>
+            <router-link class="nav-link" to="/EmployeeList">Employee List</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/AddEmployee">
+            <router-link class="nav-link" to="/AddEmployee">
               Add Employee
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/leaveRequest">Leave Request</router-link>
+            <router-link class="nav-link" to="/leaveRequest">Leave Request</router-link>
           </li>
           <li class="nav-item">
-              <router-link to="/Profile/profile">Profile</router-link>
+              <router-link class="nav-link" to="/Profile/profile">Profile</router-link>
           </li>
         </ul>
       </div>
@@ -47,7 +47,15 @@
 
 <style scoped>
 .router-link-active{
-  color: #2f89fc;
+  color: #737437;
+  border: 2px solid black;
+  border-radius: 50px;
+  margin: 10px;
+}
+.nav-link{
+  
+ 
+  margin: 10px;
 }
 </style>
 

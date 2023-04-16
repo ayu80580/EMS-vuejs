@@ -13,7 +13,8 @@
         <th class="bg-light">Approval Status</th>
       </tr>
 
-      <tbody v-for="leave of paginatedLeaves" :key="leave.leave_id">
+
+      <tbody v-for="leave of leaves" :key="leave.leave_id">
         <LeaveHistorRow
           :id="leave.id"
           :applied_on="leave.created_at"
@@ -25,7 +26,7 @@
       </tbody>
     </table>
 
-    <div class="both_paginators">
+    <!-- <div class="both_paginators">
       <div class="pagination">
         <button v-if="currentPage > 1" @click="currentPage--">Previous</button>
        
@@ -33,20 +34,21 @@
         <button v-if="currentPage < totalPages" @click="currentPage++">
           Next
         </button>
-      </div>
+      </div> -->
+
       <!-- <div><h6>Page {{currentPage}} of {{totalPages}}</h6> </div> -->
 
 
-      <div>
+      <!-- <div>
         <div v-for="page of totalPages" :key="page" class="pagination2">
           <button @click="this.currentPage = page">
             <a :class="page == currentPage ? 'active' : ''">{{ page }}</a>
           </button>
         </div>
-      </div>
+      </div> -->
 
 
-    </div>
+    <!-- </div> -->
   </div>
 </template>
     
@@ -54,38 +56,51 @@
 import axios from "axios";
 import LeaveHistorRow from "./LeaveHistorRow.vue"
 
+import { mapMutations } from 'vuex';
 export default {
   components: {
     LeaveHistorRow,
   },
   data() {
     return {
-      leaves: [],
       itemsPerPage: 5,
       currentPage: 1,
       id:this.$store.state.EmployeeData.id
     };
   },
   computed: {
-    totalItems() {
-      return this.leaves.length;
+    leaves(){
+      return this.$store.state.leaves;
     },
-    totalPages() {
-      return Math.ceil(this.totalItems / this.itemsPerPage);
-    },
-    paginatedLeaves() {
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-      const endIndex = startIndex + this.itemsPerPage;
-      return this.leaves.slice(startIndex, endIndex);
-    },
+    // totalItems() {
+    //   return this.leaves.length;
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.totalItems / this.itemsPerPage);
+    // },
+    // paginatedLeaves() {
+    //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    //   const endIndex = startIndex + this.itemsPerPage;
+    //   return this.leave.slice(startIndex, endIndex);
+    // },
   },
-  mounted() {
-    const id=this.$store.state.EmployeeData.id;
+
+  methods: {
+    ...mapMutations(['updateLeaves']),
+    getLeave() {
+      const id=this.$store.state.EmployeeData.id;
     axios.get(`http://127.0.0.1:8000/api/user/leaves/${id}`).then((response) => {
-      this.leaves = response.data;
-      console.log(this.leaves);
+      this.$store.state.leaves = response.data;
+      console.log(this.$store.state.leaves);
     });
+    },
   },
+  
+  mounted() {
+    this.getLeave();
+  },
+
+  
 };
 </script>
     

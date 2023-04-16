@@ -37,27 +37,40 @@
 <script>
 import axios from 'axios';
 import SalaryRow from './SalaryRow.vue';
+import { mapMutations } from 'vuex';
 export default{
   components:{
     'salary-row':SalaryRow
   },
     data(){
        return{
-         payments:[],
          months : [
     'January', 'February', 'March', 'April','May', 'June','July','August','September','October','November', 'December'
   ]
        }
     },
+    computed:{
+      payments(){
+        return this.$store.state.payment;
+      }
+    },
     mounted(){
+      this.getSalary();
+    },
+
+    methods: {
+    ...mapMutations(['updateSalary']),
+    getSalary() {
       const id=this.$store.state.EmployeeData.id;
      
-      axios.get(`http://127.0.0.1:8000/api/user/salary/${id}`).
-      then((response)=>{
-        this.payments=response.data;
-        console.log(this.payments);
-      })
-    }
+     axios.get(`http://127.0.0.1:8000/api/user/salary/${id}`).
+     then((response)=>{
+      this.$store.state.payment=response.data;
+       console.log(this.$store.state.payment);
+     })
+    },
+  },
+
 }
 
 </script>

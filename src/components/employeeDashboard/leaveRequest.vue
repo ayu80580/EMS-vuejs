@@ -13,6 +13,7 @@
                   class="form-control"
                   id="employee-name"
                   placeholder="Enter employee name"
+                  v-model="name"
                 />
               </div>
             </div>
@@ -21,7 +22,7 @@
                 >Leave Start Date:</label
               >
               <div class="col-sm-10">
-                <input type="date" class="form-control" id="leave-start-date" />
+                <input type="date" class="form-control" id="leave-start-date"  v-model="start"/>
               </div>
             </div>
             <div class="form-group row">
@@ -29,9 +30,10 @@
                 >Leave End Date:</label
               >
               <div class="col-sm-10">
-                <input type="date" class="form-control" id="leave-end-date" />
+                <input type="date" class="form-control" id="leave-end-date" :min="minEndDate" v-model="end" />
               </div>
             </div>
+            <p v-if="wrongEnd" style="color:red;">The End Date must be Greater than Start Date</p>
             <div class="form-group row">
               <label for="reason-for-leave" class="col-sm-2 col-form-label"
                 >Reason for Leave:</label
@@ -53,3 +55,40 @@
         </div>
       </div>
 </template>
+
+<script>
+
+export default{
+
+data(){
+  return{
+    name:'',
+  start:'',
+  end:'',
+  reason:'',
+  wrongEnd:false
+  }
+},
+
+computed: {
+    minEndDate() {
+      return this.start>0 ? this.start : 0;
+    }
+  },
+
+  watch: {
+    end(value){
+      if(value<this.start){
+        this.wrongEnd=true;
+        this.end='';
+      }else{
+        this.wrongEnd=false;
+      }
+    }
+  }
+
+
+
+}
+
+</script>

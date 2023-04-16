@@ -1,8 +1,17 @@
 <template>
   <dashboardNavigation></dashboardNavigation>
-  <div class="container">
-      <div class="mt-5 d-flex justify-content-center">
-          <form action="" @submit.prevent="UserData">
+  <div class="container-fluid">
+      <div class=" d-flex justify-content-center"  style="height: 100vh;
+      background: pink;
+  ">
+          <form action="" @submit.prevent="UserData" style="
+          border: 2px solid black;
+          padding: 40px;
+          border-radius: 10px;
+          height: fit-content;
+          
+          margin-top: 8%;
+      ">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
               <input name="name" type="text" class="form-control" id="name" placeholder="Full Name..." v-model="userDetails.name" required />
@@ -74,3 +83,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.container-fluid{
+  padding: 0;
+  margin: 0;
+}
+</style>
