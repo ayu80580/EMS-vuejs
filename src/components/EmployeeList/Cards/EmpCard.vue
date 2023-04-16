@@ -38,7 +38,7 @@ export default {
     props: ['id', 'name', 'phone', 'email', 'role', 'status', 'jod',],
     computed:{
         url(){
-            return "/user/profile/"+this.id;
+            return "/user/"+this.id+"/profile";
         }
     },
     data() {

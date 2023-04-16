@@ -18,13 +18,13 @@
             <router-link to="/Dashboard" >Dashboard</router-link>
           </li>
           <li >
-            <router-link to="/profile/profile" >Profile</router-link>
+            <router-link :to="`${url}/profile`">Profile</router-link>
           </li>
           <li >
-            <router-link to="/profile/leave">Leave History</router-link>
+            <router-link :to="`${url}/leave`">Leave History</router-link>
           </li>
           <li>
-            <router-link to="/profile/salaryHistory">Salary History</router-link>
+            <router-link :to="`${url}/salaryHistory`">Salary History</router-link>
           </li>
         </ul>
       </div>
@@ -46,6 +46,12 @@ export default{
           this.value=val;
         },
 
+
+    },
+    computed:{
+      url(){
+        return "/user/"+this.$store.state.data.id;
+      }
     }
 
 }
