@@ -10,7 +10,7 @@ import LeaveHistory from './components/leaves/LeaveHistory.vue'
 import SalaryHistory from './components/salary/SalaryHistory.vue'
 import LeaveRequest from './components/LeaveRequest/leaveRequest.vue'
 import EmpTable from './components/profile/EmpTable.vue'
-import newDash from './components/employeeDashboard/newDash.vue'
+import newDash from './components/employeeDashboard/newDash.vue';
 
 const routes = [
 
@@ -43,12 +43,15 @@ const routes = [
    
     {
         name:'Profile',
-        path: '/profile',
+        path: '/User',
         component: MainBody,
+        
         children: [
           {
-            path: 'profile',
-            component: EmpTable
+            path: 'profile/:id',
+            props:{params:true},
+            component: EmpTable,
+            
           },
           {
             path: 'leave',

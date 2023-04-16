@@ -8,7 +8,7 @@
                     <div class="card bg-light mb-3">
                       <div class="card-body">
                         <h6 class="card-title">Salary</h6>
-                        <p class="card-text">{{ this.$store.state.LatestSalary.payable_salary }}</p>
+                        <p class="card-text">{{ this.$store.state.LatestSalary.payable_salary?this.$store.state.LatestSalary.payable_salary:'Pending' }}</p>
                       </div>
                     </div>
                   </div>
