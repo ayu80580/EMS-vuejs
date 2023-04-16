@@ -36,7 +36,7 @@
             <router-link class="nav-link" to="/leaveRequest">Leave Request</router-link>
           </li>
           <li class="nav-item">
-              <router-link class="nav-link" to="url">Profile</router-link>
+              <router-link class="nav-link" :to="url">Profile</router-link>
           </li>
         </ul>
       </div>
