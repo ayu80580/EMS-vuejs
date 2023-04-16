@@ -2,7 +2,7 @@
     <tr>
         <th scope="row">{{ id }}</th>
         <td>
-            <router-link to="/profile/profile/5">{{ name }}</router-link>
+            <router-link :to="url">{{ name }}</router-link>
         </td>
         <td>
             {{ phone }}
@@ -36,6 +36,11 @@ import router from '../../../router';
 export default {
 
     props: ['id', 'name', 'phone', 'email', 'role', 'status', 'jod',],
+    computed:{
+        url(){
+            return "/user/profile/"+this.id;
+        }
+    },
     data() {
         return {
             selected: this.status

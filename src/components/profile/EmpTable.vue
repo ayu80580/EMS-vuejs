@@ -93,7 +93,9 @@ export default {
   methods: {
     ...mapMutations(['updateEmpTable']),
     getEmpTable() {
-      const id=this.$store.state.EmployeeData.id;
+      // const id=this.$store.state.EmployeeData.id;
+    const id=this.$route.params.id;
+    console.log(id);
     axios.get(`http://127.0.0.1:8000/api/user/profile/${id}`).then((response) => {
       this.$store.state.data = response.data;
       this.$store.state.role=response.data.user_role.role_name;

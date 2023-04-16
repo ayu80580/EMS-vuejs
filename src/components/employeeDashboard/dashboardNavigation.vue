@@ -36,12 +36,14 @@
             <router-link class="nav-link" to="/leaveRequest">Leave Request</router-link>
           </li>
           <li class="nav-item">
-              <router-link class="nav-link" to="/Profile/profile">Profile</router-link>
+              <router-link class="nav-link" :to="url">Profile</router-link>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+ 
 
 </template>
 
@@ -62,7 +64,13 @@
 <script>
 import axios from 'axios';
 export default{
+  computed:{
+    url(){
+      return '/user/profile/'+this.$store.state.EmployeeData.id;
+    }
+  },
   methods: {
+  
   logout() {
     axios.post('http://127.0.0.1:8000/api/logout')
       .then(response => {

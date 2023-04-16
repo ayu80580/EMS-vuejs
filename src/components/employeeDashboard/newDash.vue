@@ -61,7 +61,7 @@
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
           </svg>
-          <span><router-link to="/Profile/profile">Profile</router-link></span>
+          <span><router-link :to="url">Profile</router-link></span>
         </li>
 </ul>
 
@@ -140,7 +140,10 @@
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
         <path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+
         <div class="count">{{ this.$store.state.EmployeeData.name }}</div>
+
+        <div class="count">Hi</div>
   <ul class="dropdown-menu">
     <li><a href="#">Profile</a></li>
     <li class="divider"></li>
@@ -222,6 +225,11 @@ export default {
     userPayroll,
     userLeave,
     leaveRequest,
+  },
+  computed:{
+    url(){
+      return '/user/profile/'+this.$store.state.EmployeeData.id;
+    }
   },
 };
 </script>
