@@ -22,7 +22,7 @@
         </tr> -->
         <tbody v-for="payment in payments" :key="payment.month" >
 
-          <salary-row :month="months[payment.month]" :salary="payment.payable_salary" :status="payment.paid_status"></salary-row>
+          <salary-row :month="months[payment.month-1]" :salary="payment.payable_salary" :status="payment.paid_status"></salary-row>
         </tbody>
        
 
@@ -37,27 +37,40 @@
 <script>
 import axios from 'axios';
 import SalaryRow from './SalaryRow.vue';
+import { mapMutations } from 'vuex';
 export default{
   components:{
     'salary-row':SalaryRow
   },
     data(){
        return{
-         payments:[],
          months : [
     'January', 'February', 'March', 'April','May', 'June','July','August','September','October','November', 'December'
   ]
        }
     },
+    computed:{
+      payments(){
+        return this.$store.state.payment;
+      }
+    },
     mounted(){
+      this.getSalary();
+    },
+
+    methods: {
+    ...mapMutations(['updateSalary']),
+    getSalary() {
       const id=this.$store.state.EmployeeData.id;
      
-      axios.get(`http://127.0.0.1:8000/api/user/salary/${id}`).
-      then((response)=>{
-        this.payments=response.data;
-        console.log(this.payments);
-      })
-    }
+     axios.get(`http://127.0.0.1:8000/api/user/salary/${id}`).
+     then((response)=>{
+      this.$store.state.payment=response.data;
+       console.log(this.$store.state.payment);
+     })
+    },
+  },
+
 }
 
 </script>

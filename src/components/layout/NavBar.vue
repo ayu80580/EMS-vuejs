@@ -86,6 +86,7 @@ a{
 
 .card {
   position: fixed;
+  margin-top: 10px;
   width: 300px;
   height: 90vh;
   background-color: #1e2b32;

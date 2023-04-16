@@ -16,7 +16,7 @@
                     <div class="card bg-light mb-3">
                       <div class="card-body">
                         <h6 class="card-title">Leave Start Date</h6>
-                        <p class="card-text">{{ this.$store.state.Leave.approval_status === 1 ? this.$store.state.Leave.leave_start_date: 'Null' }}</p>
+                        <p class="card-text">{{ this.$store.state.Leave.approval_status === 1 ? this.$store.state.Leave.leave_start_date: 'Not Available' }}</p>
                       </div>
                     </div>
                   </div>
@@ -24,7 +24,7 @@
                     <div class="card bg-light mb-3">
                       <div class="card-body">
                         <h6 class="card-title">Leave End Date</h6>
-                        <p class="card-text">{{ this.$store.state.Leave.approval_status === 1 ? this.$store.state.Leave.leave_end_date : 'Null'}}</p>
+                        <p class="card-text">{{ this.$store.state.Leave.approval_status === 1 ? this.$store.state.Leave.leave_end_date : 'Not Available'}}</p>
                       </div>
                     </div>
                   </div>
