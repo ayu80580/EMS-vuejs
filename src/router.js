@@ -13,6 +13,7 @@ import EmpTable from './components/profile/EmpTable.vue'
 import newDash from './components/employeeDashboard/newDash.vue';
 import errorPage from './components/signup/errorPage.vue'
 import updateProfile from './components/profile/updateProfile.vue'
+import allSalary from './components/all_employee_salary/allSalary.vue'
 
 
 const routes = [
@@ -55,6 +56,13 @@ const routes = [
     path:'/update',
     component: updateProfile,
     // meta: { requiresAuth: true }
+},
+
+{
+  name:'AllSalary',
+  path:'/all',
+  component: allSalary,
+  // meta: { requiresAuth: true }
 },
 
 

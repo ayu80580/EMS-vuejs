@@ -63,9 +63,11 @@
 <script>
 import axios from 'axios';
 import salaryCard from './salaryCard.vue';
+import dashboardNavigation from '../employeeDashboard/dashboardNavigation.vue';
     export default {
         components:{
             'salary-card':salaryCard,
+            dashboardNavigation
         },
 
         data() {

@@ -36,6 +36,9 @@
             <router-link class="nav-link" to="/leaveRequest" v-if="this.$store.state.AuthRole == 'Admin'">Leave Request</router-link>
           </li>
           <li class="nav-item">
+              <router-link class="nav-link" to="/all" v-if="this.$store.state.AuthRole == 'Admin'">Employee Salary</router-link>
+          </li>
+          <li class="nav-item">
               <router-link class="nav-link" :to="url">Profile</router-link>
           </li>
         </ul>
