@@ -18,10 +18,11 @@
 
 // import EmployeeNav from './components/EmployeeList/EmployeeNav.vue';
 
- 
+//  import allSalary from './components/all_employee_salary/allSalary.vue';
   
 
 export default {
+  
   name: 'App',
   data() {
       return{

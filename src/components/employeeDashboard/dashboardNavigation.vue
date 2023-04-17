@@ -67,7 +67,8 @@ export default{
   computed:{
     url(){
       return '/user/profile/'+this.$store.state.EmployeeData.id;
-    }
+    },
+    
   },
   methods: {
   
