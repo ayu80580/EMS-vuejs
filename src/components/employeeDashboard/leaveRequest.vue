@@ -9,16 +9,17 @@
               >
               <div class="col-sm-10">
                 <input
-                  type="text"
+                type="name" name="name" v-model="name"
+              
                   class="form-control"
                   id="employee-name"
                   placeholder="Enter employee name"
-                  v-model="name"
+                 
                 />
               </div>
             </div>
             <div class="form-group row">
-              <label for="leave-start-date" class="col-sm-2 col-form-label"
+              <label for="leave-start-date" class="col-sm-2 col-form-label" :value="formattedStartDate" @input="updateStartDate"
                 >Leave Start Date:</label
               >
               <div class="col-sm-10">
@@ -34,18 +35,7 @@
               </div>
             </div>
             <p v-if="wrongEnd" style="color:red;">The End Date must be Greater than Start Date</p>
-            <div class="form-group row">
-              <label for="reason-for-leave" class="col-sm-2 col-form-label"
-                >Reason for Leave:</label
-              >
-              <div class="col-sm-10">
-                <textarea
-                  class="form-control"
-                  id="reason-for-leave"
-                  rows="3"
-                ></textarea>
-              </div>
-            </div>
+          
             <div class="form-group row">
               <div class="col-sm-12 text-right">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -56,39 +46,40 @@
       </div>
 </template>
 
+
+
 <script>
-
-export default{
-
-data(){
-  return{
-    name:'',
-  start:'',
-  end:'',
-  reason:'',
-  wrongEnd:false
-  }
-},
-
-computed: {
-    minEndDate() {
-      return this.start>0 ? this.start : 0;
+import axios from "axios";
+export default {
+  created() {
+    this.name = this.$store.state.EmployeeData.name;
+  },
+  data() {
+    return {
+      name: '',
+      start: '',
+      end : '',
+      userId: this.$store.state.EmployeeData.id,
+      // showUserIdField: true // set to false if not using user ID field
     }
   },
-
-  watch: {
-    end(value){
-      if(value<this.start){
-        this.wrongEnd=true;
-        this.end='';
-      }else{
-        this.wrongEnd=false;
+  methods: {
+    submitForm() {
+      const formData = {
+        name: this.name,
+        start: this.start,
+        end: this.end,
+        user_id: this.userId 
       }
+      axios.post('http://127.0.0.1:8000/api/leave-request', formData)
+        .then(() =>{
+          alert('Leave Applied Successfully');
+          // handle success response
+        })
+        .catch(() => {
+          alert('Leave Error!!!');
+        })
     }
   }
-
-
-
 }
-
 </script>

@@ -164,7 +164,8 @@
 
 
 <!-- Right Nav -->
-    <div class="header" style="
+<empProfile></empProfile>
+    <!-- <div class="header" style="
     padding: 21px;">User Details</div>
     <div class="right-content">
       <div class="task-box yellow">
@@ -174,14 +175,14 @@
         </div>
         </div>
 
-
+        
         <div class="task-box yellow">
         <div class="description-task">
           <div class="time">Bio</div>
           <div class="task-name">{{this.$store.state.EmployeeData.Bio}}</div>
         </div>
         </div>
-
+        
 
         <div class="task-box yellow">
         <div class="description-task">
@@ -199,9 +200,9 @@
 
 
 
-        </div>
+        </div>-->
 
-   </div>
+   </div> 
 </div>
 </template>
 
@@ -216,6 +217,7 @@ import userPayroll from "./userPayroll.vue";
 import userLeave from "./userLeave.vue";
 import leaveRequest from "./leaveRequest.vue";
 import router from '../../router';
+import empProfile from "./empProfile.vue";
 // import dashboardNavigation from "./dashboardNavigation.vue";
 // import { mapMutations } from 'vuex';
 
@@ -236,6 +238,7 @@ export default {
     userPayroll,
     userLeave,
     leaveRequest,
+    empProfile
 
   },
   computed:{
