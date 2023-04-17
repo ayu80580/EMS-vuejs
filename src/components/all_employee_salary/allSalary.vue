@@ -5,14 +5,12 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
-                    <h3 class="ml-2">Leave Details</h3>
-
+                    <h3 class="ml-2">Employee Salary Details</h3>
                     <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
                         <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filter_by_status">
                             <option value="all">All</option>
-                            <option value="2">Pending</option>
-                            <option value="1">Approved</option>
-                            <option value="0">Rejected</option>
+                            <option value="1">Paid</option>
+                            <option value="0">Unpaid</option>
                         </select>
                     </form>
                     <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
@@ -36,83 +34,73 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">startDate</th>
-                    <th scope="col">endDate</th>
                     <th scope="col">Role</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Leave Count</th>
+                    <th scope="col">Payable Salary</th>
                     <th scope="col">Current Status</th>
                     <th scope="col">Saved Status</th>
                 </tr>
             </thead>
-            <tbody v-for="request in requests" :key="request.id">
-                <leave-card :id="request.id" :name="request.user.name" :startDate="request.leave_start_date"
-                    :endDate="request.leave_end_date" :status="request.approval_status"
-                    :role="request.user.user_role.role_name"
-                    @statusChanged="statusChanged"></leave-card>
+            <tbody v-for="salary in salaries" :key="salary.id" >
+                <salary-card
+                :id="salary.id"
+                :name="salary.user.name"
+                :role="salary.user.user_role.role_name"
+                :month="salary.month"
+                :year="salary.year"
+                :leave_count="salary.leave_count"
+                :payable_salary="salary.payable_salary"
+                :status="salary.paid_status"
+                >
+                </salary-card>
             </tbody>
             <!-- {{ requests }} -->
         </table>
     </div>
 </template>
-
 <script>
 import axios from 'axios';
-import leaveCard from './leaveCard.vue';
+import salaryCard from './salaryCard.vue';
 import dashboardNavigation from '../employeeDashboard/dashboardNavigation.vue';
-import { mapMutations } from 'vuex';
-export default {
-    components: {
-        'leave-card': leaveCard,
-        dashboardNavigation
-    },
-    data() {
-        return {
-            input:'',
-            filter_by_status: 'all',
-            filter_by_role:'all',
-        }
-    },
-    methods: {
-        ...mapMutations(['updateLeaveRequest']),
-        filter() {
+    export default {
+        components:{
+            'salary-card':salaryCard,
+            dashboardNavigation
+        },
+
+        data() {
+            return {
+                salary:[
+                    
+                ]
+            }
+        },
+        methods:{
+            filter() {
             axios
-                .post("http://127.0.0.1:8000/api/leaves/filter",{
-                    filter_by_status:this.filter_by_status,
-                    filter_by_role:this.filter_by_role,
-                    input:this.input,
-                })
+                .get("http://127.0.0.1:8000/api/salaries")
                 .then((response) => {
                     console.log(response);
-                    this.updateLeaveRequest(response.data);
+                    this.salary = response.data;
                 })
                 .catch(() => {
                     console.error()
                 });
         },
-        statusChanged() {
-            this.filter();
-        }
-    },
-    beforeMount() {
-        this.filter();
-    },
-    computed: {
-        requests() {
-            return this.$store.state.LeaveRequest;
-        }
-    },
-    watch: {
-        filter_by_status(newValue) {
-            console.log(newValue);
-            this.filter();
+        
         },
-        filter_by_role() {
-            this.filter();
+        beforeMount() {
+            this.filter();    
         },
-        input(newValue) {
-            console.log(newValue);
-           this.filter();
-            
+        computed:{
+            salaries() {
+                return this.salary;
+            }
         }
     }
-}
 </script>
+<style scoped>
+    
+</style>

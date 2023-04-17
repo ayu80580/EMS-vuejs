@@ -60,6 +60,7 @@
 import EmpCard from './Cards/EmpCard.vue';
 import axios from 'axios';
 import dashboardNavigation from '../employeeDashboard/dashboardNavigation.vue';
+import { mapMutations } from 'vuex';
 export default {
     components: {
         'emp-card': EmpCard,
@@ -75,6 +76,7 @@ export default {
         };
     },
     methods: {
+        ...mapMutations(['updateUsersData']),
         filter() {
             axios
                 .post('http://127.0.0.1:8000/api/users/filter', {
@@ -85,7 +87,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response);
-                    this.$store.state.UsersData = response.data;
+                    this.updateUsersData(response.data);
                     
                 })
                 .catch(() => {
