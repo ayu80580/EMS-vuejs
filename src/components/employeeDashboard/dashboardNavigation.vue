@@ -28,7 +28,7 @@
             <router-link class="nav-link" to="/EmployeeList">Employee List</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/AddEmployee">
+            <router-link  class="nav-link" to="/AddEmployee">
               Add Employee
             </router-link>
           </li>
@@ -67,7 +67,8 @@ export default{
   computed:{
     url(){
       return '/user/profile/'+this.$store.state.EmployeeData.id;
-    }
+    },
+    
   },
   methods: {
   

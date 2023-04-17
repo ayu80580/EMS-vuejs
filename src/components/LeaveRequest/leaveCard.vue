@@ -20,7 +20,7 @@
                         <select class="form-select mb-3" 
                         aria-label=".form-select-lg example" 
                         v-model="selected"
-                        :disabled="disableButton"
+                        :disabled="isDisabled"
                         >
                             <option value="2">Pending</option>
                             <option value="1">Approve</option>
@@ -31,7 +31,7 @@
             </div>
         </td>
         <td>
-            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus" :disabled="disableButton">Save</button>
+            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus" :disabled="isDisabled">Save</button>
             
         </td>
     </tr>
@@ -54,25 +54,25 @@ export default {
                 alert('Please select any other option!');
                 return;
             }
-            // console.log({
-            //     'id':this.id,
-            //     approval_status:this.selected,
-            //     approved_by_id:this.$store.state.EmployeeData.id
-            // });
             axios 
-            .put('http://127.0.0.1:8000/api/activeleaves/update',{
+            .put('http://127.0.0.1:8000/api/leaves/update',{
                 'id':this.id,
                 approval_status:this.selected,
                 approved_by_id:this.$store.state.EmployeeData.id
             }).then((response)=>{
                 console.log(response);
                 this.disableButton=true;
+                this.emit('statusChanged');
             }).catch(()=>{
                 return "Error";
             })
-            this.enable = !this.enable;
-            console.log(this.selected);
         },
+    },
+    computed:{
+        isDisabled() {
+            if(this.status!=2||this.disableButton) return true;
+            return false;
+        }
     }
 }
 </script>
