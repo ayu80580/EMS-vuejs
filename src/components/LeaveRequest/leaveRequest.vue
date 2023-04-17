@@ -58,6 +58,7 @@
 import axios from 'axios';
 import leaveCard from './leaveCard.vue';
 import dashboardNavigation from '../employeeDashboard/dashboardNavigation.vue';
+import { mapMutations } from 'vuex';
 export default {
     components: {
         'leave-card': leaveCard,
@@ -71,6 +72,7 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['updateLeaveRequest']),
         filter() {
             axios
                 .post("http://127.0.0.1:8000/api/leaves/filter",{
@@ -80,7 +82,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response);
-                    this.$store.state.LeaveRequest = response.data;
+                    this.updateLeaveRequest(response.data);
                 })
                 .catch(() => {
                     console.error()
