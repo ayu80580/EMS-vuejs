@@ -67,6 +67,7 @@ data(){
         .get(`http://127.0.0.1:8000/api/Tax/${this.id}`)
         .then((response) => {
           this.updateTax(response.data);
+          this.$store.state.AuthRole = response.data.role_name;
         })
         .catch(() => {
           alert('Tax Not fetched properly!!!');
