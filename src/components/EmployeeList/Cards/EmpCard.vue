@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr class>
         <th scope="row">{{ id }}</th>
         <td>
             <router-link :to="url">{{ name }}</router-link>
@@ -14,18 +14,18 @@
             {{ role }}
         </td>
         <td>
+            {{ jod }}
+        </td>
+        <td>
             <div class="form-group">
-                <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="selected">
+                <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="selected" :disabled="isDisabled">
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>
             </div>
         </td>
         <td>
-            {{ jod }}
-        </td>
-        <td>
-            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus">Save</button>
+            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus" :disabled="isDisabled">Save</button>
         </td>
     </tr>
 </template>
@@ -39,6 +39,10 @@ export default {
     computed:{
         url(){
             return "/user/"+this.id+"/profile";
+        },
+        isDisabled() {
+            if((this.$store.state.AuthRole !== 'Admin')) return true;
+            return false;
         }
     },
     data() {
@@ -53,9 +57,10 @@ export default {
         saveStatus() {
             
             axios
-                .put("http://127.0.0.1:8000/api/users/update", {
-                    'id': this.id,
-                    'user_status_id': this.selected == 1 ? 2 : 1,
+                .post("http://127.0.0.1:8000/api/users/update", {
+                    user_id:this.$store.state.EmployeeData.id,
+                    id: this.id,
+                    user_status_id: this.selected == 1 ? 2 : 1,
                 })
                 .then((response) => {
                     console.log(response);
@@ -72,4 +77,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

@@ -40,7 +40,6 @@ const routes = [
     path: '/',
     component: EntryPage
   },
-
   {
     name: 'EmployeeList',
     path: '/EmployeeList',
