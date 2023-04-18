@@ -39,6 +39,8 @@
 
 <script>
 import axios from 'axios';
+
+import { mapMutations } from 'vuex';
 export default {
     props: ['id', 'name', 'startDate', 'endDate','status', 'role'],
     data() {
@@ -48,6 +50,21 @@ export default {
         }
     },
     methods :{
+
+
+        ...mapMutations(['updateLeave']),
+    getLeave() {
+      axios
+        .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
+        .then((response) => {
+          this.updateLeave(response.data);
+        })
+        .catch(() => {
+          alert('Leave Not fetched properly!!!');
+        });
+    },
+
+
         saveStatus() {
             
             if(this.selected===2) {
@@ -63,6 +80,7 @@ export default {
                 console.log(response);
                 this.disableButton=true;
                 this.$emit('statusChanged');
+                this.getLeave();
             }).catch(()=>{
                 return "Error";
             })

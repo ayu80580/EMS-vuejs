@@ -1,4 +1,4 @@
-import { createWebHistory,createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 
 // import store from './main'
 // import testApi from './components/testApi.vue'
@@ -20,90 +20,91 @@ import ToDelete from './components/singleEmployee/ToDelete.vue'
 const routes = [
 
   {
-    name:'NewDashboard',
-    path:'/Dashboard',
+    name: 'NewDashboard',
+    path: '/Dashboard',
     component: newDash,
     meta: { requiresAuth: true }
-},
-{
-  name:'ErrorPage',
-  path:'/error',
-  component: errorPage
-},
-    {
-        name:'EntryPage',
-        path:'/',
-        component: EntryPage
-    },
-    {
-        name:'EmployeeList',
-        path:'/EmployeeList',
-        component: EmployeeList
-    },
-    {
-        name:'AddEmployee',
-        path:'/AddEmployee',
-        component: AddEmployee
-    },
-    {
-      name:'LeaveRequest',
-      path:'/LeaveRequest',
-      component: LeaveRequest
+  },
+  {
+    name: 'ErrorPage',
+    path: '/error',
+    component: errorPage
+  },
+  {
+    name: 'EntryPage',
+    path: '/',
+    component: EntryPage
+  },
+
+  {
+    name: 'EmployeeList',
+    path: '/EmployeeList',
+    component: EmployeeList
+  },
+  {
+    name: 'AddEmployee',
+    path: '/AddEmployee',
+    component: AddEmployee
+  },
+  {
+    name: 'LeaveRequest',
+    path: '/LeaveRequest',
+    component: LeaveRequest
   },
 
 
-  
 
-{
-  name:'AllSalary',
-  path:'/all',
-  component: allSalary,
-  // meta: { requiresAuth: true }
-},
-{
-  path:'/demodelete',
-  component:ToDelete
-}
-,
-{
-  path:'/mainbody',
-  component:MainBody
-},
 
-   
-    {
-        name:'Profile',
-        path: '/User/:id',
-        component: MainBody,
-        props:{params:true},
-        
-        children: [
-          {
-            path: 'profile',
-            component: EmpTable,
-            
-          },
-          {
-            path: 'leave',
-            component: LeaveHistory
-          },
-          {
-            path: 'salaryHistory',
-            component: SalaryHistory
-          },
-          {
-            path:'update',
-            component: NewPro,
-        },
+  {
+    name: 'AllSalary',
+    path: '/all',
+    component: allSalary,
+    // meta: { requiresAuth: true }
+  },
+  {
+    path: '/demodelete',
+    component: ToDelete
+  }
+  ,
+  {
+    path: '/mainbody',
+    component: MainBody
+  },
 
-        ]
-      }
+
+  {
+    name: 'Profile',
+    path: '/User/:id',
+    component: MainBody,
+    props: { params: true },
+
+    children: [
+      {
+        path: 'profile',
+        component: EmpTable,
+
+      },
+      {
+        path: 'leave',
+        component: LeaveHistory
+      },
+      {
+        path: 'salaryHistory',
+        component: SalaryHistory
+      },
+      {
+        path: 'update',
+        component: NewPro,
+      },
+
+    ]
+  }
 
 ];
 
 const router = createRouter({
-    history:createWebHistory(),
-    routes
+  history: createWebHistory(),
+  routes
 });
 
 // router.beforeEach((to ) => {
@@ -131,6 +132,23 @@ const router = createRouter({
 //     next();
 //   }
 // });
+
+
+// router.beforeEach((to, from, next) => {
+//   // Check if the user is an employee and is trying to access the EmployeeList route
+//   if (userIsEmployee() && to.path === '/EmployeeList') {
+//     // If yes, redirect them to the home page or another appropriate route
+//     next(false)
+//   } else {
+//     next()
+//   }
+// })
+
+// function userIsEmployee() {
+//   return this.$store.state.AuthRole === 'Employee';
+// }
+
+
 
 
 

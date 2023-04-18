@@ -9,7 +9,7 @@
               <div class="card bg-light mb-3">
                 <div class="card-body">
                   <h6 class="card-title">Approval Status</h6>
-                  <p class="card-text">{{ this.$store.state.Leave.approval_status === 1 ? 'Leave Approved' : 'Leave Not Approved' }}</p>
+                  <p class="card-text">{{ recentLeave.approval_status === 1 ? 'Leave Approved' : 'Leave Not Approved' }}</p>
                 </div>
               </div>
             </div>
@@ -17,7 +17,7 @@
               <div class="card bg-light mb-3">
                 <div class="card-body">
                   <h6 class="card-title">Leave Start Date</h6>
-                  <p class="card-text">{{ this.$store.state.Leave.leave_start_date }}</p>
+                  <p class="card-text">{{ recentLeave.leave_start_date }}</p>
                 </div>
               </div>
             </div>
@@ -25,7 +25,7 @@
               <div class="card bg-light mb-3">
                 <div class="card-body">
                   <h6 class="card-title">Leave End Date</h6>
-                  <p class="card-text">{{ this.$store.state.Leave.leave_end_date}}</p>
+                  <p class="card-text">{{ recentLeave.leave_end_date}}</p>
                 </div>
               </div>
             </div>
@@ -46,13 +46,20 @@ export default {
       id: this.$store.state.EmployeeData.id,
     };
   },
+  computed:{
+    recentLeave(){
+      return this.$store.state.Leave;
+    }
+  },
   methods: {
     ...mapMutations(['updateLeave']),
     getLeave() {
+      console.log("Jira");
       axios
         .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
         .then((response) => {
           this.updateLeave(response.data);
+          
         })
         .catch(() => {
           alert('Leave Not fetched properly!!!');
