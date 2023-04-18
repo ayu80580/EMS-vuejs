@@ -1,6 +1,7 @@
 // import Vue from 'vue';
 import { createApp } from 'vue'
 import App from './App.vue'
+import VueSweetalert2 from 'vue-sweetalert2';
 import createPersistedState from 'vuex-persistedstate'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -70,6 +71,7 @@ const store = createStore({
 });
 const app = createApp(App);
 app.use(store);
+app.use(VueSweetalert2);
 app.use(router);
 app.mount('#app');
 export default store
