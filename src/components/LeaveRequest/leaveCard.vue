@@ -46,23 +46,20 @@ export default {
     data() {
         return {
             selected:this.status,
-            disableButton:false
         }
     },
     methods :{
-
-
         ...mapMutations(['updateLeave']),
-    getLeave() {
-      axios
-        .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
-        .then((response) => {
-          this.updateLeave(response.data);
-        })
-        .catch(() => {
-          alert('Leave Not fetched properly!!!');
-        });
-    },
+        getLeave() {
+        axios
+            .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
+            .then((response) => {
+            this.updateLeave(response.data);
+            })
+            .catch(() => {
+            alert('Leave Not fetched properly!!!');
+            });
+        },
 
 
         saveStatus() {
@@ -72,13 +69,13 @@ export default {
                 return;
             }
             axios 
-            .put('http://127.0.0.1:8000/api/leaves/update',{
-                'id':this.id,
+            .post('http://127.0.0.1:8000/api/leaves/update',{
+                user_id:this.$store.state.EmployeeData.id,
+                id:this.id,
                 approval_status:this.selected,
                 approved_by_id:this.$store.state.EmployeeData.id
             }).then((response)=>{
                 console.log(response);
-                this.disableButton=true;
                 this.$emit('statusChanged');
                 this.getLeave();
             }).catch(()=>{
@@ -88,9 +85,13 @@ export default {
     },
     computed:{
         isDisabled() {
-            if(this.status!=2||this.disableButton) return true;
+            if(this.status!=2) return true;
             return false;
         }
     }
 }
 </script>
+
+<style scoped>
+
+</style>
