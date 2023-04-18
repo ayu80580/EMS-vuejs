@@ -89,7 +89,6 @@ export default {
                 });
         },
         statusChanged() {
-            console.log('Status changed');
             this.filter();
         }
     },

@@ -46,7 +46,6 @@ export default {
     data() {
         return {
             selected:this.status,
-            disableButton:false
         }
     },
     methods :{
@@ -78,7 +77,6 @@ export default {
                 approved_by_id:this.$store.state.EmployeeData.id
             }).then((response)=>{
                 console.log(response);
-                this.disableButton=true;
                 this.$emit('statusChanged');
                 this.getLeave();
             }).catch(()=>{
@@ -88,7 +86,7 @@ export default {
     },
     computed:{
         isDisabled() {
-            if(this.status!=2||this.disableButton) return true;
+            if(this.status!=2) return true;
             return false;
         }
     }
