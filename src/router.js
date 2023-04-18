@@ -14,7 +14,7 @@ import newDash from './components/employeeDashboard/newDash.vue';
 import errorPage from './components/signup/errorPage.vue'
 import updateProfile from './components/profile/updateProfile.vue'
 import allSalary from './components/all_employee_salary/allSalary.vue'
-import newTable from './utils/newTable.vue'
+
 
 
 const routes = [
@@ -24,11 +24,6 @@ const routes = [
     path:'/Dashboard',
     component: newDash,
     meta: { requiresAuth: true }
-},
-{
-  name:'newTable',
-  path:'/newTable',
-  component: newTable,
 },
 {
   name:'ErrorPage',
