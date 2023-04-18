@@ -33,19 +33,7 @@
     <!-- Employee Details -->
     <div class="mx-5 my-5">
         <table class="table table-light table-striped-columns">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <!-- <th scope="col">Image</th> -->
-                    <th scope="col">Name</th>
-                    <th scope="col">phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">DOJ</th>
-                    <th scope="col">Save</th>
-                </tr>
-            </thead>
+           
             <tbody v-for="Employee in Employees" :key="Employee.id">
                 <emp-card :id=Employee.id :name=Employee.name :phone=Employee.phone :email=Employee.email
                     :role="Employee.user_role.role_name" :status="Employee.user_status.status" :jod=Employee.joining_date

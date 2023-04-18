@@ -4,7 +4,7 @@
     top: 48px;">
   <header>
     <!-- here’s the avatar -->
-    <a target="_blank" href="#">
+    <a target="_self" >
       <img src="../../utils/images/img2.jpeg" >
     </a>
 
@@ -135,7 +135,7 @@ p {
 }
 
 .profile-card header h1 {
-  color: #0d6efd;
+  color: #506ebb
 }
 
 .profile-card header a {
