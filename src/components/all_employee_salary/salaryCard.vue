@@ -56,6 +56,7 @@ export default {
         saveStatus() {
             axios
             .post('http://127.0.0.1:8000/api/salaries/pay',{
+                user_id:this.$store.state.EmployeeData.id,
                 id:this.id,
                 paid_status:this.paid_status,
             })

@@ -50,16 +50,16 @@ export default {
     },
     methods :{
         ...mapMutations(['updateLeave']),
-    getLeave() {
-      axios
-        .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
-        .then((response) => {
-          this.updateLeave(response.data);
-        })
-        .catch(() => {
-          alert('Leave Not fetched properly!!!');
-        });
-    },
+        getLeave() {
+        axios
+            .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
+            .then((response) => {
+            this.updateLeave(response.data);
+            })
+            .catch(() => {
+            alert('Leave Not fetched properly!!!');
+            });
+        },
 
 
         saveStatus() {
@@ -69,8 +69,9 @@ export default {
                 return;
             }
             axios 
-            .put('http://127.0.0.1:8000/api/leaves/update',{
-                'id':this.id,
+            .post('http://127.0.0.1:8000/api/leaves/update',{
+                user_id:this.$store.state.EmployeeData.id,
+                id:this.id,
                 approval_status:this.selected,
                 approved_by_id:this.$store.state.EmployeeData.id
             }).then((response)=>{

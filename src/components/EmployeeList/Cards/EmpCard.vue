@@ -57,9 +57,10 @@ export default {
         saveStatus() {
             
             axios
-                .put("http://127.0.0.1:8000/api/users/update", {
-                    'id': this.id,
-                    'user_status_id': this.selected == 1 ? 2 : 1,
+                .post("http://127.0.0.1:8000/api/users/update", {
+                    user_id:this.$store.state.EmployeeData.id,
+                    id: this.id,
+                    user_status_id: this.selected == 1 ? 2 : 1,
                 })
                 .then((response) => {
                     console.log(response);
