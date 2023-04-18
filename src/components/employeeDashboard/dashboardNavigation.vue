@@ -25,18 +25,18 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="/EmployeeList" v-if="this.$store.state.AuthRole == 'Admin' || this.$store.state.AuthRole === 'Manager'">Employee List</router-link>
+            <router-link class="nav-link" to="/EmployeeList" v-if="this.$store.state.AuthRole === 'Admin' || this.$store.state.AuthRole === 'Manager'">Employee List</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/AddEmployee" v-if="this.$store.state.AuthRole == 'Admin'">
+            <router-link class="nav-link" to="/AddEmployee" v-if="this.$store.state.AuthRole === 'Admin'">
               Add Employee
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/leaveRequest" v-if="this.$store.state.AuthRole == 'Admin'">Leave Request</router-link>
+            <router-link class="nav-link" to="/leaveRequest" v-if="this.$store.state.AuthRole === 'Admin'">Leave Request</router-link>
           </li>
           <li class="nav-item">
-              <router-link class="nav-link" to="/all" v-if="this.$store.state.AuthRole == 'Admin'">Employee Salary</router-link>
+              <router-link class="nav-link" to="/all" v-if="this.$store.state.AuthRole === 'Admin'">Employee Salary</router-link>
           </li>
           <li class="nav-item">
               <router-link class="nav-link" :to="url">Profile</router-link>
