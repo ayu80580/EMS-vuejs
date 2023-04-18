@@ -38,19 +38,7 @@
 <script>
 export default{
     
-    data(){
-        return{
-            value:'profile',
-
-        }
-    },
-    methods:{
-        demoFun(val){
-          this.value=val;
-        },
-
-
-    },
+   
     computed:{
       url(){
         return "/user/"+this.$store.state.data.id;
