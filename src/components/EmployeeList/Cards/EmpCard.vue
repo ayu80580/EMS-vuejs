@@ -18,14 +18,14 @@
         </td>
         <td>
             <div class="form-group">
-                <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="selected">
+                <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="selected" :disabled="isDisabled">
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>
             </div>
         </td>
         <td>
-            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus">Save</button>
+            <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus" :disabled="isDisabled">Save</button>
         </td>
     </tr>
 </template>
@@ -39,6 +39,10 @@ export default {
     computed:{
         url(){
             return "/user/"+this.id+"/profile";
+        },
+        isDisabled() {
+            if((this.$store.state.AuthRole !== 'Admin')) return true;
+            return false;
         }
     },
     data() {
