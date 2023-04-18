@@ -70,7 +70,7 @@ export default {
     },
     computed:{
         isDisabled(){
-            if(this.paid_status===1) return true;
+            if(this.status===1) return true;
             return false;
         }
     }
