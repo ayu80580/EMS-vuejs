@@ -42,20 +42,35 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 
 export default {
     props:['id','name','role','month','year','payable_salary','leave_count','status'],
     data() {
         return {
             paid_status:this.status,
-            isDisable:false,
         }
     },
     methods:{
-
+        saveStatus() {
+            axios
+            .post('http://127.0.0.1:8000/api/salaries/pay',{
+                id:this.id,
+                paid_status:this.paid_status,
+            })
+            .then(($response)=>{
+                console.log($response.data);
+                this.$emit('statusChanged');
+            })
+            .catch(($error)=>{
+                console.log($error.data);
+            });
+        }
     },
     computed:{
-        saveStatus() {
+        isDisabled(){
+            if(this.paid_status===1) return true;
             return false;
         }
     }
