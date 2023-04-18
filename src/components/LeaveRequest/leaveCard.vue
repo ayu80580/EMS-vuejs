@@ -62,7 +62,7 @@ export default {
             }).then((response)=>{
                 console.log(response);
                 this.disableButton=true;
-                this.emit('statusChanged');
+                this.$emit('statusChanged');
             }).catch(()=>{
                 return "Error";
             })

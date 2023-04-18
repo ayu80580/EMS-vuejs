@@ -247,9 +247,6 @@ export default {
     }
   },
 
-  
-
-
 
   methods:{
   logout() {

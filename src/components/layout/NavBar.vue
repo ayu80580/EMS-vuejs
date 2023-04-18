@@ -26,6 +26,9 @@
           <li>
             <router-link :to="`${url}/salaryHistory`">Salary History</router-link>
           </li>
+          <li>
+            <router-link :to="`${url}/update`">Update Profile</router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -35,19 +38,7 @@
 <script>
 export default{
     
-    data(){
-        return{
-            value:'profile',
-
-        }
-    },
-    methods:{
-        demoFun(val){
-          this.value=val;
-        },
-
-
-    },
+   
     computed:{
       url(){
         return "/user/"+this.$store.state.data.id;

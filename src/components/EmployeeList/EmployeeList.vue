@@ -10,15 +10,15 @@
                     <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
                         <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filter_by_status">
                             <option value="all">All</option>
-                            <option value="2">Active</option>
-                            <option value="1">Inactive</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </form>
                     <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
                         <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filter_by_role">
                             <option value="all">All</option>
-                            <option value="2">Manager</option>
-                            <option value="3">Employee</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Employee">Employee</option>
                         </select>
                     </form>
                     <form class="d-flex " role="search" @submit.prevent="onSearch">

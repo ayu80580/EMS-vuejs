@@ -2,17 +2,22 @@
     <div class="mainbody">
 
         <nav-bar ></nav-bar>
-        <home-page></home-page>
-    
+        <!-- <home-page></home-page> -->
+        <to-delete></to-delete>
     </div>
 
 </template>
 
 <script>
 import NavBar from '../layout/NavBar.vue'
-import  HomePage from './HomePage.vue'
+import ToDelete from './ToDelete.vue'
+// import  HomePage from './HomePage.vue'
+
 export default{
-  components: { NavBar,HomePage },
+  components: { NavBar,
+    // HomePage,
+    ToDelete
+ },
 }
 
 </script>

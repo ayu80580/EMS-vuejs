@@ -4,7 +4,7 @@
     top: 48px;">
   <header>
     <!-- here’s the avatar -->
-    <a target="_self">
+    <a target="_self" >
       <img src="../../utils/images/img2.jpeg" >
     </a>
 

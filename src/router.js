@@ -12,11 +12,11 @@ import LeaveRequest from './components/LeaveRequest/leaveRequest.vue'
 import EmpTable from './components/profile/EmpTable.vue'
 import newDash from './components/employeeDashboard/newDash.vue';
 import errorPage from './components/signup/errorPage.vue'
-import updateProfile from './components/profile/updateProfile.vue'
+// import updateProfile from './components/profile/updateProfile.vue'
 import allSalary from './components/all_employee_salary/allSalary.vue'
-
-
-
+import NewPro from './components/profile/NewPro.vue';
+import ToDelete from './components/singleEmployee/ToDelete.vue'
+// import MainBody from './components/singleEmployee/MainBody.vue'
 const routes = [
 
   {
@@ -52,12 +52,7 @@ const routes = [
   },
 
 
-  {
-    name:'updateProfile',
-    path:'/update',
-    component: updateProfile,
-    // meta: { requiresAuth: true }
-},
+  
 
 {
   name:'AllSalary',
@@ -65,7 +60,15 @@ const routes = [
   component: allSalary,
   // meta: { requiresAuth: true }
 },
-
+{
+  path:'/demodelete',
+  component:ToDelete
+}
+,
+{
+  path:'/mainbody',
+  component:MainBody
+},
 
    
     {
@@ -87,7 +90,12 @@ const routes = [
           {
             path: 'salaryHistory',
             component: SalaryHistory
-          }
+          },
+          {
+            path:'update',
+            component: NewPro,
+        },
+
         ]
       }
 
