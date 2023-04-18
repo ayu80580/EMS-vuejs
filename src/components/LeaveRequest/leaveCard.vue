@@ -49,8 +49,6 @@ export default {
         }
     },
     methods :{
-
-
         ...mapMutations(['updateLeave']),
     getLeave() {
       axios
@@ -92,3 +90,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>
