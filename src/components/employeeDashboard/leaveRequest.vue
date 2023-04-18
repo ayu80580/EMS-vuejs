@@ -26,13 +26,14 @@
               >Leave Start Date:</label
             >
             <div class="col-sm-10">
-              <input type="date" class="form-control" id="leave-start-date" v-model="start" />
+              <input type="date" class="form-control" id="leave-start-date" v-model="leave_start_date" />
             </div>
           </div>
+
           <div class="form-group row">
             <label for="leave-end-date" class="col-sm-2 col-form-label">Leave End Date:</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control" id="leave-end-date" :min="minEndDate" v-model="end" />
+              <input type="date" class="form-control" id="leave-end-date" :min="minEndDate" v-model="leave_end_date" />
             </div>
           </div>
           <p v-if="wrongEnd" class="error-message">The End Date must be Greater than Start Date</p>
@@ -120,32 +121,51 @@
 
 <script>
 import axios from "axios";
+import { mapMutations } from 'vuex';
 export default {
   created() {
     this.name = this.$store.state.EmployeeData.name;
   },
   data() {
     return {
-      name: '',
-      start: '',
-      end : '',
+      approved_by: '',
+      leave_start_date: '',
+      leave_end_date: '',
       userId: this.$store.state.EmployeeData.id,
       // showUserIdField: true // set to false if not using user ID field
     }
   },
   methods: {
+
+
+    ...mapMutations(['updateLeave']),
+    getLeave() {
+      axios
+        .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
+        .then((response) => {
+
+          this.updateLeave(response.data);
+        })
+        .catch(() => {
+          alert('Leave Not fetched properly!!!');
+        });
+    },
+
+
     submitForm() {
       const formData = {
         // name: this.name,
-        start: this.start,
-        end: this.end,
+        leave_start_date: this.leave_start_date,
+        leave_end_date: this.leave_end_date,
         user_id: this.userId,
-        approved_by : this.$store.state.AuthRole
       }
+      // console.log(formData);
       
-      axios.post('http://127.0.0.1:8000/api/leave-request', formData)
-        .then(() =>{
-          alert('Leave Applied Successfully');
+      axios.post('http://127.0.0.1:8000/api/leave-request',formData)
+        .then((response) =>{
+          console.log(response);
+          this.getLeave();
+          // alert('Leave Applied Successfully');
           // handle success response
         })
         .catch(() => {

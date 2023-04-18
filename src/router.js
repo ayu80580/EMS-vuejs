@@ -50,6 +50,10 @@ const routes = [
     path: '/LeaveRequest',
     component: LeaveRequest
   },
+
+
+
+
   {
     name: 'AllSalary',
     path: '/all',
@@ -127,6 +131,23 @@ const router = createRouter({
 //     next();
 //   }
 // });
+
+
+// router.beforeEach((to, from, next) => {
+//   // Check if the user is an employee and is trying to access the EmployeeList route
+//   if (userIsEmployee() && to.path === '/EmployeeList') {
+//     // If yes, redirect them to the home page or another appropriate route
+//     next(false)
+//   } else {
+//     next()
+//   }
+// })
+
+// function userIsEmployee() {
+//   return this.$store.state.AuthRole === 'Employee';
+// }
+
+
 
 
 
