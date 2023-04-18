@@ -16,9 +16,14 @@ import errorPage from './components/signup/errorPage.vue'
 import allSalary from './components/all_employee_salary/allSalary.vue'
 import NewPro from './components/profile/NewPro.vue';
 import ToDelete from './components/singleEmployee/ToDelete.vue'
+import UpdateProfile from './components/profile/UpdateProfile.vue';
 // import MainBody from './components/singleEmployee/MainBody.vue'
 const routes = [
 
+  {
+    path:'/update',
+    component:UpdateProfile
+  },
   {
     name: 'NewDashboard',
     path: '/Dashboard',
@@ -62,6 +67,10 @@ const routes = [
     // meta: { requiresAuth: true }
   },
   {
+    path: '/empdemo',
+    component: NewPro,
+  },
+  {
     path: '/demodelete',
     component: ToDelete
   }
@@ -91,10 +100,6 @@ const routes = [
       {
         path: 'salaryHistory',
         component: SalaryHistory
-      },
-      {
-        path: 'update',
-        component: NewPro,
       },
 
     ]
