@@ -5,7 +5,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
-                    <h3 class="ml-2">Employee Salary Details</h3>
+                    <h3 class="ml-2">Salary Details</h3>
                     <form class="d-inline-flex flex-row " role="search" @submit.prevent="onSearch">
                         <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="filter_by_status">
                             <option value="all">All</option>
@@ -29,7 +29,7 @@
         </nav>
     </div>
     <div class="mx-5 my-5">
-        <table class="table table-light table-striped-columns">
+        <table class="table styled-table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -119,4 +119,36 @@ export default {
     }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+</style>

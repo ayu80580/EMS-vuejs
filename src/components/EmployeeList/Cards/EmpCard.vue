@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr class>
         <th scope="row">{{ id }}</th>
         <td>
             <router-link :to="url">{{ name }}</router-link>
@@ -14,15 +14,15 @@
             {{ role }}
         </td>
         <td>
+            {{ jod }}
+        </td>
+        <td>
             <div class="form-group">
                 <select class="form-select mb-3" aria-label=".form-select-lg example" v-model="selected">
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>
             </div>
-        </td>
-        <td>
-            {{ jod }}
         </td>
         <td>
             <button type="button" class="btn btn-outline-primary" @click.prevent="saveStatus">Save</button>
@@ -72,4 +72,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
