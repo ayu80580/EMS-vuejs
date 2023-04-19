@@ -39,7 +39,7 @@
 
 <script>
 import axios from 'axios';
-
+import swal from 'sweetalert';
 import { mapMutations } from 'vuex';
 export default {
     props: ['id', 'name', 'startDate', 'endDate','status', 'role'],
@@ -77,7 +77,11 @@ export default {
             }).then((response)=>{
                 console.log(response);
                 this.$emit('statusChanged');
+                swal("Status updated successfully!", {
+                        icon: "success",
+                });
                 this.getLeave();
+                
             }).catch(()=>{
                 return "Error";
             })

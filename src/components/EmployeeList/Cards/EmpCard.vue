@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
 import axios from 'axios';
 import router from '../../../router';
 export default {
@@ -51,6 +52,7 @@ export default {
         }
     },
     methods: {
+        
         goToUserProfile() {
             router.push('/profile/profile');
         },
@@ -65,6 +67,9 @@ export default {
                 .then((response) => {
                     console.log(response);
                     this.$emit('statusChanged');
+                    swal("Status updated successfully!", {
+            icon: "success",
+          });
                 })
                 .catch(() => {
                     return "Error";
