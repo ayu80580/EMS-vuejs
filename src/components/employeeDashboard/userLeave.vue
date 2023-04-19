@@ -54,12 +54,10 @@ export default {
   methods: {
     ...mapMutations(['updateLeave']),
     getLeave() {
-      console.log("Jira");
       axios
         .get(`http://127.0.0.1:8000/api/leave/${this.id}`)
         .then((response) => {
           this.updateLeave(response.data);
-          
         })
         .catch(() => {
           alert('Leave Not fetched properly!!!');
@@ -74,14 +72,6 @@ export default {
 
 <style scoped>
 .fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 .card-body {
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
@@ -113,12 +103,6 @@ export default {
   to {
     opacity: 1;
   }
-}
-
-/* Color Scheme */
-.bg-gradient-primary {
-  background-image: linear-gradient(to bottom right, #007
-  d8c, #00a0e9);
 }
 
 .card {

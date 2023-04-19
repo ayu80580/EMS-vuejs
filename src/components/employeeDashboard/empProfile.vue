@@ -5,27 +5,27 @@
   <header>
     <!-- here’s the avatar -->
     <a target="_self" >
-      <img src="../../utils/images/img2.jpeg" >
+      <img src="data:image/png;base64,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" >
     </a>
 
-    <!-- the username -->
+
     <h1>
-        {{this.$store.state.EmployeeData.name}}
+        {{empData.name}}
           </h1>
 
-    <!-- and role or location -->
+    
     <h2>
-        {{ this.$store.state.EmployeeData.email }}
+        {{ empData.email }}
           </h2>
 
-    <p>City: {{this.$store.state.EmployeeData.city}}</p>
+    <p>City: {{empData.city}}</p>
 
   </header>
 
-  <!-- bit of a bio; who are you? -->
+
   <div class="profile-bio">
     <p>
-        {{this.$store.state.EmployeeData.Bio}}
+        {{empData.Bio}}
     </p>
 
   </div>
@@ -33,6 +33,21 @@
  
 </aside>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+
+    }
+  },
+  computed:{
+    empData() {
+      return this.$store.state.EmployeeData;
+    }
+  }
+}
+</script>
 
 
 
