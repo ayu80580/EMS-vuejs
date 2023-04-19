@@ -35,7 +35,7 @@
 
           <!-- <div class="count">{{ this.$store.state.EmployeeData.name }}</div> -->
           <ul class="dropdown-menu">
-            <li><a @click="logout">Logout</a></li>
+            <li><a style="cursor: pointer;" @click="logout">Logout</a></li>
           </ul>
         </div>
       </div>

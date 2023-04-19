@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 import store from './main'
-// import testApi from './components/testApi.vue'
 import EntryPage from './components/signup/EntryPage.vue'
 import EmployeeList from './components/EmployeeList/EmployeeList.vue'
 import AddEmployee from './components/add_employee/addEmp.vue'
