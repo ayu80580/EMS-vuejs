@@ -1,6 +1,7 @@
 // import Vue from 'vue';
 import { createApp } from 'vue'
 import App from './App.vue'
+import VueSweetalert2 from 'vue-sweetalert2';
 import createPersistedState from 'vuex-persistedstate'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -10,7 +11,9 @@ import { createStore } from 'vuex';
 const store = createStore({
 
   plugins: [createPersistedState({
-    paths: ['EmployeeData' , 'LatestSalary' , 'Tax' , 'Leave', 'data','leaves','payment','auth', 'LeaveRequest','UsersData','role','AuthRole'],
+    paths: ['EmployeeData' , 'LatestSalary' , 'Tax'
+     , 'Leave', 'data','leaves','payment','auth', 
+     'LeaveRequest','UsersData','role','AuthRole','AllEmployeeSalary'],
   })],
   
     state(){
@@ -20,6 +23,7 @@ const store = createStore({
         Tax: [],
         UsersData:[],
         LeaveRequest:[],
+        AllEmployeeSalary:[],
         Leave :[],
         leaves:[],
         payment:[],
@@ -60,10 +64,14 @@ const store = createStore({
         updateUsersData(state,payload){
           state.UsersData=payload;
         },
+        updateAllEmployeeSalary(state,payload){
+          state.AllEmployeeSalary=payload;
+        },
       },
 });
 const app = createApp(App);
 app.use(store);
+app.use(VueSweetalert2);
 app.use(router);
 app.mount('#app');
 export default store
