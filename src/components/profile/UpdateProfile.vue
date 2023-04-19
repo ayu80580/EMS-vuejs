@@ -74,7 +74,7 @@
                   </div>
                   <div  v-if="updatePass == true">
                   <label for="password">Password</label>
-                  <input type="password" name="password">
+                  <input type="password" name="password" v-model="password">
                   </div>
                 </div>
 
@@ -97,48 +97,51 @@
   </template>
 
   <script>
+  import { mapMutations } from 'vuex';
   import axios from "axios";
+  import swal from 'sweetalert';
   
     export default {
   
-      created() {
-      this.password= this.$store.state.EmployeeData.password;
-      this.name = this.$store.state.EmployeeData.name;
-      this.phone = this.$store.state.EmployeeData.phone;
-      this.email = this.$store.state.EmployeeData.email; 
-    },
+    //   created() {
+    //   this.name = this.$store.state.EmployeeData.name;
+    //   this.phone = this.$store.state.EmployeeData.phone;
+    //   this.email = this.$store.state.EmployeeData.email; 
+    // },
       data() {
         return {
           updatePass : false,
-          id : '',
-          name: '',
-          email: '',
-          phone: '',
-          password: '',
+          id : this.$store.state.EmployeeData.id,
+          name: this.$store.state.EmployeeData.name,
+          email: this.$store.state.EmployeeData.email,
+          phone: this.$store.state.EmployeeData.phone,
+          password: 'password',
         };
       },
       methods: {
-       
+        ...mapMutations(['updateEmployeeData']),
           ShowPass(){
               this.updatePass = !this.updatePass;
           },
         updateProfile() {
-        const uId = this.$store.state.EmployeeData.id;
         const form={   
-        id : uId,
+        id : this.id,
         name: this.name,
         email: this.email,
         phone:this.phone,
         password: this.password,
       }
         axios.post('http://127.0.0.1:8000/api/updateprofile'  , form).then((response) => {
-        if(this.$store.EmployeeData.id === response.id){
-          this.$store.state.EmployeeData.name = response.name;
-          this.$store.state.EmployeeData.email = response.email;
-          this.$store.state.EmployeeData.phone = response.phone;
+          if(this.id===response.data.id) {
+            this.updateEmployeeData(response.data);
+          }
 
-        }
-        
+          swal("Profile updated successfully!", {
+      icon: "success",
+    });
+
+          
+        console.log(response.data);
       }).catch(error => {
         console.error('Failed to update profile', error);
       });

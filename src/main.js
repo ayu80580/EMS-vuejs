@@ -11,64 +11,66 @@ import { createStore } from 'vuex';
 const store = createStore({
 
   plugins: [createPersistedState({
-    paths: ['EmployeeData' , 'LatestSalary' , 'Tax'
-     , 'Leave', 'data','leaves','payment','auth', 
-     'LeaveRequest','UsersData','role','AuthRole','AllEmployeeSalary'],
+    paths: ['EmployeeData', 'LatestSalary', 'Tax'
+      , 'Leave', 'data', 'leaves', 'payment', 'auth',
+      'LeaveRequest', 'UsersData', 'role', 'AuthRole', 'AllEmployeeSalary'],
   })],
-  
-    state(){
-        return{
-        EmployeeData: [],
-        LatestSalary: [],
-        Tax: [],
-        UsersData:[],
-        LeaveRequest:[],
-        AllEmployeeSalary:[],
-        Leave :[],
-        leaves:[],
-        payment:[],
-        data: [],
-        role:'',
-        AuthRole:'',
-        status:'',
-        auth:0
-      
-        };
+
+  state() {
+    return {
+      EmployeeData: [],
+      LatestSalary: [],
+      Tax: [],
+      UsersData: [],
+      LeaveRequest: [],
+      AllEmployeeSalary: [],
+      Leave: [],
+      leaves: [],
+      payment: [],
+      data: [],
+      role: '',
+      AuthRole: '',
+      status: '',
+      auth: 0
+
+    };
+  },
+  mutations: {
+    updateEmployeeData(state, payload) {
+      state.EmployeeData = payload;
     },
-    mutations: {
-      
-        updateLatestSalary(state, payload) {
-          state.LatestSalary = payload;
-        },
-        updateTax(state, payload) {
-            state.Tax= payload;
-        },
-        updateLeave(state, payload) {
-          state.Leave= payload;
-        },
-        updateEmpTable(state, payload) {
-          state.data= payload;
-        },
-        updateLeaves(state,payload){
-          state.leaves=payload;
-        },
-        updatePayment(state,payload){
-          state.payment=payload;
-        },
-        updateAuth(state,payload){
-          state.auth=payload;
-        },
-        updateLeaveRequest(state,payload){
-          state.LeaveRequest=payload;
-        },
-        updateUsersData(state,payload){
-          state.UsersData=payload;
-        },
-        updateAllEmployeeSalary(state,payload){
-          state.AllEmployeeSalary=payload;
-        },
-        
-      },
+
+    updateLatestSalary(state, payload) {
+      state.LatestSalary = payload;
+    },
+    updateTax(state, payload) {
+      state.Tax = payload;
+    },
+    updateLeave(state, payload) {
+      state.Leave = payload;
+    },
+    updateEmpTable(state, payload) {
+      state.data = payload;
+    },
+    updateLeaves(state, payload) {
+      state.leaves = payload;
+    },
+    updatePayment(state, payload) {
+      state.payment = payload;
+    },
+    updateAuth(state, payload) {
+      state.auth = payload;
+    },
+    updateLeaveRequest(state, payload) {
+      state.LeaveRequest = payload;
+    },
+    updateUsersData(state, payload) {
+      state.UsersData = payload;
+    },
+    updateAllEmployeeSalary(state, payload) {
+      state.AllEmployeeSalary = payload;
+    },
+  }
 });
 const app = createApp(App);
 app.use(store);

@@ -74,6 +74,7 @@
 
 <script>
 import axios from "axios";
+import swal from 'sweetalert';
 import dashboardNavigation from "../employeeDashboard/dashboardNavigation.vue";
 export default {
   components: {
@@ -109,6 +110,11 @@ export default {
           this.userDetails.city = '';
           this.userDetails.bio = '';
           this.isAdded = true;
+
+          swal("Profile Created successfully!", {
+      icon: "success",
+    });
+
         })
         .catch((error) => {
           if (error.response && error.response.status === 422) {

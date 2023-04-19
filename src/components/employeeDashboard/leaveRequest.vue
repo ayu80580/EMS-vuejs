@@ -10,6 +10,7 @@
               <input
                 type="name"
                 name="name"
+                disabled
                 v-model="name"
                 class="form-control"
                 id="employee-name"
@@ -114,6 +115,7 @@
 <script>
 import axios from "axios";
 import { mapMutations } from 'vuex';
+import swal from 'sweetalert';
 export default {
   created() {
     this.name = this.$store.state.EmployeeData.name;
@@ -157,7 +159,9 @@ export default {
         .then((response) =>{
           console.log(response);
           this.getLeave();
-          alert('Leave Applied Successfully');
+          swal("Leave Applied successfully!", {
+      icon: "success",
+    });
         })
         .catch(() => {
           alert('Leave Error!!!');
