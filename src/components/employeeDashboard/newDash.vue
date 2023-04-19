@@ -76,12 +76,12 @@
 
 
         <!-- AllEmployee -->
-        <li class="item">
+        <li class="item" v-if="this.$store.state.AuthRole === 'Admin'">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-range" viewBox="0 0 16 16">
             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
             <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM9 8a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zm-8 2h4a1 1 0 1 1 0 2H1v-2z"/>
           </svg>
-          <span><router-link to="/all">Employee Salary</router-link></span>
+          <span><router-link to="/all" >Employee Salary</router-link></span>
         </li>
 
 
@@ -133,7 +133,7 @@
                   <div class="card rounded-lg border-0 cards-short w-100">
                     <div class="row">
                       <div class="col-sm-6 order-1 order-sm-1">
-                        <h4 class="text-primary pt-3 pt-sm-5 pl-3 pl-lg-4 pr-3">Hi, welcome</h4>
+                        <h4 class="text-primary pt-3 pt-sm-5 pl-3 pl-lg-4 pr-3">Hi {{ this.$store.state.EmployeeData.name }}, </h4>
                       </div>
                       <div class="col-sm-6 d-flex d-lg-block d-lg-block align-items-center justify-content-center order-0 order-sm-1">
                         <img src="https://gatoledo.com/proj-codepen/img/welcome-intranet.png" data-swap="https://gatoledo.com/proj-codepen/img/welcome-intranet-dark.png" id="welcome" class="img-fluid" style="margin-top: -25px;width: 75%;">
@@ -156,7 +156,7 @@
           <userLeave></userLeave>    
         </div>
       </div>
-      <leaveRequest></leaveRequest>   
+      <leaveRequest v-if="this.$store.state.AuthRole === 'Employee'|| this.$store.state.AuthRole === 'Manager'"></leaveRequest>   
     </div>
   </div>
 
@@ -189,42 +189,7 @@
 
 <!-- Right Nav -->
 <empProfile></empProfile>
-    <!-- <div class="header" style="
-    padding: 21px;">User Details</div>
-    <div class="right-content">
-      <div class="task-box yellow">
-        <div class="description-task">
-          <div class="time">Name</div>
-          <div class="task-name">{{ this.$store.state.EmployeeData.name}}</div>
-        </div>
-        </div>
-
-        
-        <div class="task-box yellow">
-        <div class="description-task">
-          <div class="time">Bio</div>
-          <div class="task-name">{{this.$store.state.EmployeeData.Bio}}</div>
-        </div>
-        </div>
-        
-
-        <div class="task-box yellow">
-        <div class="description-task">
-          <div class="time">City</div>
-          <div class="task-name">{{this.$store.state.EmployeeData.city}}</div>
-        </div>
-        </div>
-
-        <div class="task-box yellow">
-        <div class="description-task">
-          <div class="time">E-mail</div>
-          <div class="task-name"><a href="mailto:ayush@recruitcrm.io">{{ this.$store.state.EmployeeData.email }}</a></div>
-        </div>
-        </div>
-
-
-
-        </div>-->
+  
 
    </div> 
 </div>
@@ -242,23 +207,16 @@ import userLeave from "./userLeave.vue";
 import leaveRequest from "./leaveRequest.vue";
 import router from '../../router';
 import empProfile from "./empProfile.vue";
-// import dashboardNavigation from "./dashboardNavigation.vue";
-// import { mapMutations } from 'vuex';
+
 
 export default {
   
   /* eslint-disable vue/multi-word-component-names */
   name: "NewDashboard",
-  // computed:{
-  //   userSalary(){
-  //     return this.$store.state.LatestSalary;
-  //   }
-  // },
+ 
   
 
   components: {
-    // dashboardNavigation,
-    // userDetail,
     userPayroll,
     userLeave,
     leaveRequest,
