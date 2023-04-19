@@ -98,7 +98,8 @@
 
   <script>
   import axios from "axios";
-  
+  import Swal from 'sweetalert2';
+
     export default {
   
       created() {
@@ -131,10 +132,27 @@
         phone:this.phone,
         password: this.password,
       }
+
+
         axios.post('http://127.0.0.1:8000/api/updateprofile'  , form).then((response) => {
-        console.log(response);
+        this.$store.state.EmployeeData.name=response.name;
+        this.$store.state.EmployeeData.email=response.email;
+        this.$store.state.EmployeeData.phone=response.phone;
+        Swal.fire({
+      title: 'Success!',
+      text: 'Your profile has been updated.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+        
       }).catch(error => {
         console.error('Failed to update profile', error);
+        Swal.fire({
+      title: 'Error!',
+      text: "Error",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    })
       });
         }
       }

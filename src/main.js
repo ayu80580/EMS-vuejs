@@ -67,6 +67,9 @@ const store = createStore({
         updateAllEmployeeSalary(state,payload){
           state.AllEmployeeSalary=payload;
         },
+        updateEmployeeData(state,payload){
+          state.EmployeeData=payload;
+        }
       },
 });
 const app = createApp(App);
