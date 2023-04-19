@@ -132,7 +132,13 @@
         password: this.password,
       }
         axios.post('http://127.0.0.1:8000/api/updateprofile'  , form).then((response) => {
-        console.log(response);
+        if(this.$store.EmployeeData.id === response.id){
+          this.$store.state.EmployeeData.name = response.name;
+          this.$store.state.EmployeeData.email = response.email;
+          this.$store.state.EmployeeData.phone = response.phone;
+
+        }
+        
       }).catch(error => {
         console.error('Failed to update profile', error);
       });
