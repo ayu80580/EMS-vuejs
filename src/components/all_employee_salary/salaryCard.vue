@@ -43,7 +43,7 @@
 
 <script>
 import axios from 'axios';
-
+import swal from 'sweetalert';
 
 export default {
     props:['id','name','role','month','year','payable_salary','leave_count','status'],
@@ -63,6 +63,9 @@ export default {
             .then(($response)=>{
                 console.log($response.data);
                 this.$emit('statusChanged');
+                swal("Status updated successfully!", {
+                        icon: "success",
+                });
             })
             .catch(($error)=>{
                 console.log($error.data);
