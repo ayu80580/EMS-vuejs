@@ -66,7 +66,7 @@ const routes = [
     // meta: { requiresAuth: true }
   },
   {
-    path: '/empdemo',
+    path: '/newpro',
     component: NewPro,
   },
   {
