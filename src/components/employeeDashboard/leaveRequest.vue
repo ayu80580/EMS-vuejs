@@ -49,6 +49,8 @@
   </transition>
 </template>
 
+
+
 <style scoped>
 .card {
   border: 1px solid #ccc;
@@ -85,16 +87,6 @@
 
 .error-message {
   color: red;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
 
@@ -165,8 +157,7 @@ export default {
         .then((response) =>{
           console.log(response);
           this.getLeave();
-          // alert('Leave Applied Successfully');
-          // handle success response
+          alert('Leave Applied Successfully');
         })
         .catch(() => {
           alert('Leave Error!!!');
