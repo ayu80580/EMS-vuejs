@@ -74,7 +74,7 @@
                   </div>
                   <div  v-if="updatePass == true">
                   <label for="password">Password</label>
-                  <input type="password" name="password" v-model="password">
+                  <input type="password" name="password">
                   </div>
                 </div>
 
@@ -97,35 +97,36 @@
   </template>
 
   <script>
-  import { mapMutations } from 'vuex';
   import axios from "axios";
   import Swal from 'sweetalert2';
 
     export default {
   
-    //   created() {
-    //   this.name = this.$store.state.EmployeeData.name;
-    //   this.phone = this.$store.state.EmployeeData.phone;
-    //   this.email = this.$store.state.EmployeeData.email; 
-    // },
+      created() {
+      this.password= this.$store.state.EmployeeData.password;
+      this.name = this.$store.state.EmployeeData.name;
+      this.phone = this.$store.state.EmployeeData.phone;
+      this.email = this.$store.state.EmployeeData.email; 
+    },
       data() {
         return {
           updatePass : false,
-          id : this.$store.state.EmployeeData.id,
-          name: this.$store.state.EmployeeData.name,
-          email: this.$store.state.EmployeeData.email,
-          phone: this.$store.state.EmployeeData.phone,
-          password: 'password',
+          id : '',
+          name: '',
+          email: '',
+          phone: '',
+          password: '',
         };
       },
       methods: {
-        ...mapMutations(['updateEmployeeData']),
+       
           ShowPass(){
               this.updatePass = !this.updatePass;
           },
         updateProfile() {
+        const uId = this.$store.state.EmployeeData.id;
         const form={   
-        id : this.id,
+        id : uId,
         name: this.name,
         email: this.email,
         phone:this.phone,
@@ -134,16 +135,8 @@
 
 
         axios.post('http://127.0.0.1:8000/api/updateprofile'  , form).then((response) => {
-
-         if(this.id===response.data.id) {
-            this.updateEmployeeData(response.data);
-          }
-        Swal.fire({
-      title: 'Success!',
-      text: 'Your profile has been updated.',
-      icon: 'success',
-      confirmButtonText: 'OK'
-    }).catch(error => {
+        console.log(response);
+      }).catch(error => {
         console.error('Failed to update profile', error);
         Swal.fire({
       title: 'Error!',

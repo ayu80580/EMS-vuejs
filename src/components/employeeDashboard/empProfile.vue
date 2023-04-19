@@ -10,22 +10,22 @@
 
 
     <h1>
-        {{empData.name}}
+        {{this.$store.state.EmployeeData.name}}
           </h1>
 
     
     <h2>
-        {{ empData.email }}
+        {{ this.$store.state.EmployeeData.email }}
           </h2>
 
-    <p>City: {{empData.city}}</p>
+    <p>City: {{this.$store.state.EmployeeData.city}}</p>
 
   </header>
 
 
   <div class="profile-bio">
     <p>
-        {{empData.Bio}}
+        {{this.$store.state.EmployeeData.Bio}}
     </p>
 
   </div>
@@ -33,21 +33,6 @@
  
 </aside>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-
-    }
-  },
-  computed:{
-    empData() {
-      return this.$store.state.EmployeeData;
-    }
-  }
-}
-</script>
 
 
 

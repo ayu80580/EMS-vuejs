@@ -50,6 +50,7 @@
           <div class="formbg-outer">
             <div class="formbg">
               <div class="formbg-inner padding-horizontal--48">
+                
                 <form id="stripe-login" @submit.prevent="updateProfile">
                   <div class="field padding-bottom--24">
                     <label for="email">Email</label>
@@ -73,7 +74,7 @@
                     </div>
                     <div  v-if="updatePass == true">
                     <label for="password">Password</label>
-                    <input type="password" name="password" v-model="password">
+                    <input type="password" name="password">
                     </div>
                   </div>
   
@@ -96,47 +97,41 @@
     </template>
   
     <script>
-    import { mapMutations } from 'vuex';
     import axios from "axios";
     
       export default {
     
-      //   created() {
-      //   this.password= this.$store.state.data.password;
-      //   this.name = this.$store.state.data.name;
-      //   this.phone = this.$store.state.data.phone;
-      //   this.email = this.$store.state.data.email; 
-      // },
+        created() {
+        this.password= this.$store.state.data.password;
+        this.name = this.$store.state.data.name;
+        this.phone = this.$store.state.data.phone;
+        this.email = this.$store.state.data.email; 
+      },
         data() {
           return {
             updatePass : false,
-            id : this.$store.state.data.id,
-            name: this.$store.state.data.name,
-            email: this.$store.state.data.email,
-            phone: this.$store.state.data.phone,
-            password: 'password',
+            id : '',
+            name: '',
+            email: '',
+            phone: '',
+            password: '',
           };
         },
         methods: {
-          ...mapMutations(['updateEmployeeData']),
+         
             ShowPass(){
                 this.updatePass = !this.updatePass;
             },
           updateProfile() {
+          const uId = this.$store.state.data.id;
           const form={   
-          id : this.id,
+          id : uId,
           name: this.name,
           email: this.email,
           phone:this.phone,
           password: this.password,
         }
-          axios
-          .post('http://127.0.0.1:8000/api/updateprofile'  , form)
-          .then((response) => {
-
-            if(this.$store.state.EmployeeData.id===response.data.id) {
-            this.updateEmployeeData(response.data);
-          }
+          axios.post('http://127.0.0.1:8000/api/updateprofile'  , form).then((response) => {
           console.log(response);
         }).catch(error => {
           console.error('Failed to update profile', error);
