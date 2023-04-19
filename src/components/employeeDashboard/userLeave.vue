@@ -73,7 +73,7 @@ export default {
 <style scoped>
 .fade-enter-active,
 .card-body {
-  /* flex: 1 1 auto; */
+  flex: 1 1 auto;
   /* padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x); */
   /* color: var(--bs-card-color); */
   padding:10px;
