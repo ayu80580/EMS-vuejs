@@ -9,7 +9,7 @@
               <div class="card bg-light mb-3">
                 <div class="card-body">
                   <h6 class="card-title">Approval Status</h6>
-                  <p class="card-text">{{ recentLeave.approval_status === 1 ? 'Leave Approved' : 'Leave Not Approved' }}</p>
+                  <p class="card-text">{{ recentLeave.approval_status === 1 ? 'Approved' : 'Not Approved' }}</p>
                 </div>
               </div>
             </div>
@@ -73,10 +73,11 @@ export default {
 <style scoped>
 .fade-enter-active,
 .card-body {
-  flex: 1 1 auto;
-  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-  color: var(--bs-card-color);
-  max-height: 125px;
+  /* flex: 1 1 auto; */
+  /* padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x); */
+  /* color: var(--bs-card-color); */
+  padding:10px;
+
   height: 125px;
 }
 
