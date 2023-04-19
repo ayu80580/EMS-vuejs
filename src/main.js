@@ -70,7 +70,6 @@ const store = createStore({
     updateAllEmployeeSalary(state, payload) {
       state.AllEmployeeSalary = payload;
     },
-  },
 });
 const app = createApp(App);
 app.use(store);

@@ -50,6 +50,8 @@
 </template>
     
     
+
+
 <script>
 import setAuthHeader from '../AuthAPI/setAuthHeader'
 // import { mapMutations } from 'vuex';
@@ -70,15 +72,15 @@ export default {
     login() {
       axios
         .post("http://127.0.0.1:8000/api/login", {
-          email: this.email,
-          password: this.password,
-        })
-        .then((response) => {
-          localStorage.setItem("access_token", response.data.access_token);
-          setAuthHeader(response.data.token);
-          this.getEmployeeData();
-
-        })
+              email: this.email,
+              password: this.password,
+            })
+            .then((response) => {
+              localStorage.setItem("access_token", response.data.token);
+              setAuthHeader(response.data.token);
+              this.getEmployeeData();
+              // console.log(response.data.token);
+            })
         .catch((error) => {
           if (error.response && error.response.status === 422) {
             // Validation failed, set errors data property
