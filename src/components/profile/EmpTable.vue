@@ -83,6 +83,9 @@ export default {
     },
     role(){
       return this.$store.state.role;
+    },
+    status(){
+      return this.$store.state.status;
     }
   },
  
@@ -98,9 +101,9 @@ export default {
     // console.log(id);
     axios.get(`http://127.0.0.1:8000/api/user/profile/${id}`).then((response) => {
       this.$store.state.data = response.data;
-      console.log(this.$store.state.data);
       this.$store.state.role=response.data.user_role.role_name;
       this.$store.state.status=response.data.user_status.status;
+      // console.log(this.$store.state.status);
     });
     },
   },
