@@ -99,7 +99,8 @@
   <script>
   import { mapMutations } from 'vuex';
   import axios from "axios";
-  
+  import Swal from 'sweetalert2';
+
     export default {
   
     //   created() {
@@ -130,14 +131,26 @@
         phone:this.phone,
         password: this.password,
       }
+
+
         axios.post('http://127.0.0.1:8000/api/updateprofile'  , form).then((response) => {
-          if(this.id===response.data.id) {
+
+         if(this.id===response.data.id) {
             this.updateEmployeeData(response.data);
           }
-          
-        console.log(response.data);
-      }).catch(error => {
+        Swal.fire({
+      title: 'Success!',
+      text: 'Your profile has been updated.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    }).catch(error => {
         console.error('Failed to update profile', error);
+        Swal.fire({
+      title: 'Error!',
+      text: "Error",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    })
       });
         }
       }
