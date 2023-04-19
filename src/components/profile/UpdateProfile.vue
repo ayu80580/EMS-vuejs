@@ -99,6 +99,7 @@
   <script>
   import { mapMutations } from 'vuex';
   import axios from "axios";
+  import swal from 'sweetalert';
   
     export default {
   
@@ -134,6 +135,11 @@
           if(this.id===response.data.id) {
             this.updateEmployeeData(response.data);
           }
+
+          swal("Profile updated successfully!", {
+      icon: "success",
+    });
+
           
         console.log(response.data);
       }).catch(error => {
