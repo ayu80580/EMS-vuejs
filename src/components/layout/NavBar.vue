@@ -26,9 +26,9 @@
           <li>
             <router-link :to="`${url}/salaryHistory`">Salary History</router-link>
           </li>
-          <!-- <li>
-            <router-link :to="`${url}/update`">Update Profile</router-link>
-          </li> -->
+          <li>
+            <router-link :to="`/newpro`">Update Profile</router-link>
+          </li>
         </ul>
       </div>
     </div>
